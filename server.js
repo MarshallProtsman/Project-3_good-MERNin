@@ -19,7 +19,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
 // Define API routes here
 
 // Send every other request to the React app
