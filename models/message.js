@@ -2,7 +2,12 @@ var mongoose = require("mongoose");
 
 var Schema = mongoose.Schema;
 
+var Mixed = mongoose.Schema.Types.Mixed;
+
 var messageSchema = new Schema({
+    conversationId: {
+        type: Mixed,
+    },
     messageId: {
         type: String,
     },
@@ -13,7 +18,7 @@ var messageSchema = new Schema({
         type: String,
     },
     createdAt: {
-        type: String,
+        type: Mixed,
     }
 });
 
