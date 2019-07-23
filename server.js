@@ -18,7 +18,6 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
-
 // Define API routes here
 app.post("/login", function(req,res) {
   db.user.create(req.body)
