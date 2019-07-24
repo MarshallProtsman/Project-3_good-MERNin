@@ -8,7 +8,7 @@ function homePage() {
         <br />
         <div className="#">Welcome to Immersio!</div>
         <br />
-        <NavButton onClick=() text="Login Here"/>
+            <NavButton to="/login" text="Login Here"/>
         </Box>
     );
 
