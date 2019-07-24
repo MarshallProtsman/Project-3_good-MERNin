@@ -1,16 +1,19 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Container from "@material-ui/core/Container";
+import ButtonAppBar from "./components/navbar";
 import homePage from "./pages/homepage";
 import loginPage from "./pages/login";
 import messengerPage from "./pages/messenger";
 import noMatchPage from "./pages/nomatch";
-import profilePage from "./pages/profile"
+import profilePage from "./pages/profile";
 import "./App.css";
 
 function App() {
   return (
-    <div>
-      <h1>Language App</h1>
+    <Container maxWidth="lg">
+    <ButtonAppBar/>
+      
 
       <Router>
         <div>
@@ -23,7 +26,7 @@ function App() {
           </Switch>
         </div>
       </Router>
-    </div>
+    </Container>
   );
 }
 
