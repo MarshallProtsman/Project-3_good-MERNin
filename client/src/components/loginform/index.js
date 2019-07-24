@@ -1,8 +1,8 @@
 import React from 'react';
-import Box from "@material-ui/core/Box"
+import Box from "@material-ui/core/Box";
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import NavButton from "../navigationbutton"
+import NavButton from "../navigationbutton";
 
 
 export default function LoginForm() {
