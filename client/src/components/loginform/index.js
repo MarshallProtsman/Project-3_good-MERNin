@@ -1,44 +1,67 @@
-import React from 'react';
+import React, { Component } from 'react'
 import Box from "@material-ui/core/Box";
 import TextField from '@material-ui/core/TextField';
-import Button from '@material-ui/core/Button';
 import NavButton from "../navigationbutton";
 
+export default class LoginForm extends Component {
 
-export default function LoginForm() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      password: ""};
 
-    function formSubmit() {
-        alert("form was submitted!")
-    }
+    this.handleNameChange = this.handleNameChange.bind(this);
+    this.handlePasswordChange = this.handlePasswordChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
 
-  return (
+  handleNameChange(event) {
+    this.setState({name: event.target.value});
+  }
+
+  handlePasswordChange(event) {
+    this.setState({password: event.target.value});
+  }
+
+   onSubmit(event) {
+     alert('Username: ' + this.state.name + " Password: " + this.state.password);
+     event.preventDefault();
+   }
+
+  render() {
+    return (
       <Box>
+        <br />
+        <form className="" onSubmit={this.onSubmit}>
+          <TextField
+            required
+            id="standard-required"
+            label="Name"
+            className=""
+            autoComplete="username"
+            margin="normal"
+            value={this.state.name}
+            onChange={this.handleNameChange}
+          />
+          <TextField
+            required
+            id="standard-password-input"
+            label="Password"
+            className=""
+            type="password"
+            autoComplete="current-password"
+            margin="normal"
+            value={this.state.password}
+            onChange={this.handlePasswordChange}
+          />
           <br />
-    <form className="" noValidate autoComplete="off">
-      <TextField
-        required
-        id="standard-required"
-        label="Required"
-        defaultValue="Name"
-        className=""
-        margin="normal"
-      />
-      <TextField
-        required
-        id="standard-password-input"
-        label="Password"
-        className=""
-        type="password"
-        autoComplete="current-password"
-        margin="normal"
-      />
-      <br />
-      <Button onClick={formSubmit} variant="contained" color="primary">
-      Submit
-      </Button>
-      <br />
-        <NavButton to="/profile" text="temp Nav to profile"/>
-    </form>
-    </Box>
-  );
+          <input type="submit" variant="contained" color="primary"/>
+          <br />
+        </form>
+        <br />
+        <NavButton to="/profile" text="temp Nav to profile" />
+      </Box>
+    )
+  };
 }
