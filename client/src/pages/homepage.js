@@ -11,8 +11,6 @@ function homePage() {
             <NavButton to="/login" text="Login Here"/>
         </Box>
     );
-
-    //log in button
 }
 
 export default homePage;
