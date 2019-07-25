@@ -1,10 +1,11 @@
 const express = require('express');
-const router = epress.Router();
+const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 //User model
 const User = require('../models/User');
+const UserSession = require('../models/UserSession');
 
 //Login Page
 router.get('/login', (req, res) => res.render('Login'))
@@ -14,8 +15,10 @@ router.get('/register', (req, res) => res.render('Register'))
 
 //Register Handle
 router.post('/register', (req, res) => {
-    const { name, email, password, password2 } = req.body;
+    let { name, email, password, password2 } = req.body;
     let errors = [];
+    
+    email = email.toLowerCase();
 
     //Check required fields
     if(!name || !email || !password || !password2) {
@@ -59,7 +62,7 @@ router.post('/register', (req, res) => {
                     password2
                 });
             } else {
-                const newUser = new User({
+                let newUser = new User({
                     name,
                     email,
                     password
@@ -92,6 +95,21 @@ router.post('/login', (req, res, next) => {
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);
+});
+
+new UserSession = new UserSession();
+UserSession.userId = user._id;
+UserSession.save((err, doc) => {
+    if (err) {
+        errors.push({ msg: 'Server Error' });
+        alert('Server Error');
+    }
+});
+
+return res.sed({
+    success: true,
+    message: 'Valid Sign in',
+    token: doc._id
 });
 
 //Logout Handle
