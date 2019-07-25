@@ -1,6 +1,7 @@
 import React from "react";
 import Box from "@material-ui/core/Box";
 import SimpleSelect from "../components/languageform"
+import NavButton from "../components/navigationbutton"
 
 function profilePage() {
     var imgStyle = {
@@ -18,6 +19,8 @@ function profilePage() {
         <img src="#" alt="user face" style={imgStyle}/>
         <br />
         <SimpleSelect/>
+        <br />
+        <NavButton to="/messenger" text="Start Chatting!"/>
         </Box>
     );
 }
