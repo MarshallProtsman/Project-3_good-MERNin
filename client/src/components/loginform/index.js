@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Box from "@material-ui/core/Box";
 import TextField from '@material-ui/core/TextField';
 import NavButton from "../navigationbutton";
+import Button from "@material-ui/core/Button"
 
 export default class LoginForm extends Component {
 
@@ -56,7 +57,7 @@ export default class LoginForm extends Component {
             onChange={this.handlePasswordChange}
           />
           <br />
-          <input type="submit" variant="contained" color="primary"/>
+          <Button type="submit" variant="contained" color="primary">Submit</Button>
           <br />
         </form>
         <br />
