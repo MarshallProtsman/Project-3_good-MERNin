@@ -35,26 +35,33 @@ class Messenger extends Component {
     }
 
     messagePush = () => {
-        let newArray = this.state.messages;
-        let msgTextInput = document.getElementById('messageText');
-        let msgText = msgTextInput.value;
+        let newArray = this.state.messages; // capture existing state
+        let msgTextInput = document.getElementById('messageText'); // assign the input to a variable
+        let msgText = msgTextInput.value; // capture input text
 
+        // validate the input and prevent blank messages
         if (msgText) {
-            console.log('legit');
+            // capture message data, add unique key
             let msg = {
                 id: this.state.messages.length + 1,
                 user: 'John',
                 msgNative: msgText,
                 msgTarget: `Fake translation: ${msgText}`
             };
-            newArray.push(msg);
-            console.log(newArray);
+
+            newArray.push(msg); // add new message to new array
+
+            console.log(newArray); // tell us what's up
+
+            // set the new state to capture the additional message
             this.setState({
                 messages: newArray
             });
-            msgTextInput.value = '';
+
+            msgTextInput.value = ''; // clear out the input 
+
         } else {
-            console.log('Message text cannot be empty...')
+            console.log('Message text cannot be empty...'); // you know we can't send an empty msg...
         }
     }
 
