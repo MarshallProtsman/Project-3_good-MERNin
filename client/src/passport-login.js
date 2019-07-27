@@ -1,5 +1,4 @@
 const express = require("express");
-const expressLayouts = require('express-ejs-layouts');
 const mongoose = require('mongoose');
 const flash = require('connect-flash');
 const session = require('express-session');
@@ -19,9 +18,7 @@ mongoose.connect(db, { useNewUrlParser: true })
     .then(() => console.log('MongoDB connected...'))
     .catch(err => console.log(err));
 
-//EJS --will replace with handlebars later
-app.use(expressLayouts);
-app.set('view engine', 'ejs');
+//need middleware substitute for helping render pages
 
 // Bodyparser
 app.use(express.urlencoded({ extended: false }));
@@ -37,7 +34,7 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Connect Flash
+// Connect Flash Messages
 app.use(flash());
 
 // Global Vars
