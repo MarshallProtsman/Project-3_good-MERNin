@@ -38,8 +38,8 @@ class Chat extends Component {
             img: this.props.user.img
         };
 
-        console.log(this.user.name);
-        console.log(this.user.email);
+        console.log(this.name);
+        console.log(this.email);
 
         // state only needs to be maintained for the chat input and messages list
         this.state = {

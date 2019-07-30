@@ -26,9 +26,22 @@ class App extends Component {
   };
 
   // state is the user at within app state 
+  // state = {
+  //   login: false,
+  //   user: {
+  //     name: 'Bert',
+  //     email: 'jrobertson@gmail.com',
+  //     id: 1222022,
+  //     native: 'en',
+  //     target: 'es',
+  //     img: 'url-goes-here',
+  //     friends: [],
+  //     threads: [],
+  //   }
+  // };
+
   state = {
     login: false,
-    user: {
       name: 'Bert',
       email: 'jrobertson@gmail.com',
       id: 1222022,
@@ -36,9 +49,7 @@ class App extends Component {
       target: 'es',
       img: 'url-goes-here',
       friends: [],
-      threads: [],
-    }
-
+      threads: []
   };
 
   render() {
