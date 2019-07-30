@@ -9,7 +9,6 @@ class MessengerPage extends Component {
             <Messenger user={ this.props.app.user } appStateHandler={ this.props.appStateHandler }/>
         )
     }
-
 }
 
 export default MessengerPage;

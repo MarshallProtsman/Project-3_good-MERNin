@@ -17,9 +17,10 @@ class App extends Component {
     this.handler = this.handler.bind(this);
   }
 
-  handler(user) {
+  // function to set app state from children
+  handler() {
     this.setState({
-     login: true
+      login: true
     });
     console.log('setting app state')
   };
@@ -28,12 +29,12 @@ class App extends Component {
   state = {
     login: false,
     user: {
-      name: 'john',
-      email: '',
-      id: '',
-      native: '',
+      name: 'Bert',
+      email: 'jrobertson@gmail.com',
+      id: 1222022,
+      native: 'en',
       target: 'es',
-      img: '',
+      img: 'url-goes-here',
       friends: [],
       threads: [],
     }
@@ -49,16 +50,13 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={homePage} />
-                <Route exact path="/login" render={() => <LoginPage appStateHandler={this.handler} />} />
+                <Route exact path="/login" render={() => <LoginPage />} />
                 <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
-                <Route exact path="/messenger" render={() => <MessengerPage app={this.state} appStateHandler={this.handler} />} />
+                <Route exact path="/messenger" render={() => <MessengerPage app={this.state} />} />
                 <Route component={noMatchPage} />
               </Switch>
             </div>
           </Router>
-          <button onClick={
-                  this.handler
-                }>User 1</button>
         </Container>
       </div>
     )

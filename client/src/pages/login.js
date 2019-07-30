@@ -11,8 +11,6 @@ class LoginPage extends Component {
             <br />
             <div className="#">Log-in Page</div>
             <LoginForm/>
-            <br />
-            <button onClick={this.props.appStateHandler}>setState (login = true)</button>
             </Box>
         )
     }
