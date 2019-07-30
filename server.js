@@ -56,10 +56,10 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-server = app.listen(PORT, () => console.log('server is running on port 5000'));
+const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
 
 // ===== BEGIN SOCKET.IO ================================================== //
-io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
+const io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
 
 // array to manage connected clients
 var clients = [];
