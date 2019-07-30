@@ -18,7 +18,8 @@ class Chat extends Component {
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
-            messageList: []
+            messageList: [],
+            isHidden : true
         };
 
         // pass the user profile to server to add to socket/client instance
@@ -32,6 +33,7 @@ class Chat extends Component {
             console.log(data); // log message from server
         });
 
+        
         // add message to thread (state array) on receipt from server (translated)
         const addMessage = data => {
             data.key = this.state.messageList.length; // adds key to message based on messages array length
@@ -67,7 +69,9 @@ class Chat extends Component {
                 this.sendMessage(ev);
             }
         };
-    };
+    }
+
+
 
     render() {
         // style declarations
@@ -124,7 +128,8 @@ class Chat extends Component {
                             msgStyle = msgFriend;
                         }
                         return (
-                            <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
+                            <div onClick={toggleMessage} style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
+                                <p>{message.message} {message.key}</p>
                                 <p>{message.user.userName}: {message.translation}</p>
                             </div>
                         )
@@ -141,5 +146,13 @@ class Chat extends Component {
         )
     }
 }
+
+const toggleMessage = () => {
+
+    console.log(`message clicked`);
+    this.setState({
+        isHidden: !this.state.isHidden
+      })
+    };
 
 export default Chat
