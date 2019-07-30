@@ -6,7 +6,7 @@ import Messenger from '../components/messenger';
 class MessengerPage extends Component {
     render() {
         return (
-            <Messenger app={this.props}/>
+            <Messenger user={this.props.user}/>
         )
     }
 

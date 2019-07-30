@@ -4,15 +4,15 @@ import io from 'socket.io-client';
 class Chat extends Component {
     constructor(props) {
         super(props);
-
+  
         // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
         this.user = {
-            userName: 'John Robertson',
-            userEmail: 'jrobbers@getMaxListeners.com',
-            userID: 100214,
-            native: 'en',
-            target: 'fr',
-            userImg: '/public/url'
+            name: this.props.user.name,
+            email: this.props.user.email,
+            id: this.props.user.id,
+            native: this.props.user.native,
+            target: this.props.user.target,
+            img: this.props.user.img
         };
 
         // state only needs to be maintained for the chat input and messages list

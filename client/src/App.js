@@ -6,36 +6,34 @@ import homePage from "./pages/homepage";
 import loginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import noMatchPage from "./pages/nomatch";
-import profilePage from "./pages/profile";
+import ProfilePage from "./pages/profile";
 import "./App.css";
 
-
 class App extends Component {
+  // state is the user at within app state 
   state = {
-    user: {
-      userName: 'john',
-      userEmail: 'john@gmail.com',
-      userID: 332002,
-      langNative: 'en',
-      langTarget: 'es',
+      name: 'john',
+      email: 'john@gmail.com',
+      id: 7062261217,
+      native: 'en',
+      target: 'fr',
+      img: 'url/picture',
       friends: [],
       threads: []
-    }
   };
   
-  render() {
+  render() {    
     return (
       <div>
-      <ButtonAppBar/>
-        
+      <ButtonAppBar />
       <Container>
         <Router>
           <div>
             <Switch>
               <Route exact path="/" component={homePage} />
               <Route exact path="/login" component={loginPage} />
-              <Route exact path="/profile" component={profilePage} />
-              <Route exact path="/messenger" render={() => <MessengerPage app={ this.state } />} />
+              <Route exact path="/profile" render={() => <ProfilePage user={ this.state } />} />
+              <Route exact path="/messenger" render={() => <MessengerPage user={ this.state } />} />
               <Route component={noMatchPage} />
             </Switch>
           </div>
