@@ -1,13 +1,21 @@
 const express = require("express");
-var mongoose = require("mongoose");
-var db = require("./models");
+const mongoose = require("mongoose");
+const db = require("./models");
 const path = require("path");
 const socket = require('socket.io');
+const app = express();
+
 
 require('dotenv').config(); // loading .env and config variables
 
 const PORT = process.env.PORT || 5000;
-const app = express();
+
+
+// marshie trying to fix socket port
+
+// const http = require("http");
+// const server = http.createServer(app);
+// console.log(`server is running on port ${PORT}`)
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -56,10 +64,15 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-server = app.listen(PORT, () => console.log('server is running on port 5000'));
+// const server = express()
+//   // .use((req, res) => res.sendFile(INDEX) )
+//   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
+
 
 // ===== BEGIN SOCKET.IO ================================================== //
-io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
+const io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
 
 // array to manage connected clients
 var clients = [];
