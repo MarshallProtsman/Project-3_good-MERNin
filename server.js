@@ -3,11 +3,19 @@ const mongoose = require("mongoose");
 const db = require("./models");
 const path = require("path");
 const socket = require('socket.io');
+const app = express();
+
 
 require('dotenv').config(); // loading .env and config variables
 
 const PORT = process.env.PORT || 5000;
-const app = express();
+
+
+// marshie trying to fix socket port
+
+// const http = require("http");
+// const server = http.createServer(app);
+// console.log(`server is running on port ${PORT}`)
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -61,6 +69,7 @@ app.get("*", (req, res) => {
 //   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
 const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
+
 
 // ===== BEGIN SOCKET.IO ================================================== //
 const io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
