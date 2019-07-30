@@ -5,6 +5,8 @@ class Chat extends Component {
     constructor(props) {
         super(props);
   
+        console.log(this.props);
+
         // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
         this.user = {
             name: this.props.user.name,
@@ -137,6 +139,9 @@ class Chat extends Component {
                     <br />
                     <button onClick={this.sendMessage} className="btn btn-primary form-control" style={styleButton}>SEND</button>
                 </div>
+
+                {/* testing */}
+                <button onClick={this.props.appStateHandler}>TEST</button>
             </div>
         )
     }
