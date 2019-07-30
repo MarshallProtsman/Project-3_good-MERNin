@@ -19,20 +19,21 @@ class App extends Component {
 
   handler(user) {
     this.setState({
-      login: true
+     login: true
     });
     console.log('setting app state')
-  }
+  };
+
   // state is the user at within app state 
   state = {
     login: false,
     user: {
       name: 'john',
-      email: 'john@gmail.com',
-      id: 7062261217,
-      native: 'en',
-      target: 'fr',
-      img: 'url/picture',
+      email: '',
+      id: '',
+      native: '',
+      target: 'es',
+      img: '',
       friends: [],
       threads: [],
     }
@@ -48,13 +49,16 @@ class App extends Component {
             <div>
               <Switch>
                 <Route exact path="/" component={homePage} />
-                <Route exact path="/login" render={() => <LoginPage userHandler={this.handler} />} />
-                <Route exact path="/profile" render={() => <ProfilePage app={this.state} />} />
+                <Route exact path="/login" render={() => <LoginPage appStateHandler={this.handler} />} />
+                <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
                 <Route exact path="/messenger" render={() => <MessengerPage app={this.state} appStateHandler={this.handler} />} />
                 <Route component={noMatchPage} />
               </Switch>
             </div>
           </Router>
+          <button onClick={
+                  this.handler
+                }>User 1</button>
         </Container>
       </div>
     )

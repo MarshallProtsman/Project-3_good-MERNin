@@ -12,7 +12,7 @@ class LoginPage extends Component {
             <div className="#">Log-in Page</div>
             <LoginForm/>
             <br />
-            <button onClick={this.props.userHandler}>TEST</button>
+            <button onClick={this.props.appStateHandler}>setState (login = true)</button>
             </Box>
         )
     }

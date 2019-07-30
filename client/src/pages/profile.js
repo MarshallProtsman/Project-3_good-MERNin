@@ -25,6 +25,7 @@ class ProfilePage extends Component {
             <SimpleSelect/>
             <br />
             <NavButton to="/messenger" text="Start Chatting!"/>
+            <button onClick={this.props.appStateHandler}>setState (login = true)</button>
             </Box>
         );
     };
