@@ -21,7 +21,8 @@ mongoose.connect(db, { useNewUrlParser: true })
 //need middleware substitute for helping render pages
 
 // Bodyparser
-app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 
 //Express Session
 app.use(session({
