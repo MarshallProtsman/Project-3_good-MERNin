@@ -56,7 +56,11 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
+const server = express()
+  // .use((req, res) => res.sendFile(INDEX) )
+  .listen(PORT, () => console.log(`Listening on ${ PORT }`));
+
+// const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
 
 // ===== BEGIN SOCKET.IO ================================================== //
 const io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
