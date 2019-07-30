@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "immersio-1564233311146",
+  "private_key_id": "c33e4effc54145c99a22b7b812c7266bf08689bb",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDasuCEazt+GfZW\n+9SbYKAt0NhYxPXMwztpoVpIr04vWI2JJq3918fYz0a9thW5a7dZrcQPilwjz+bA\nLcznooXnc3iygJBH30Vuycj+rv3f47cS/mHG9IWOsgXUj1qGvKXa7yVUfOEI5xtT\nZOjRcJAmfsAljR6e4oXmd3OXX9mUBYXIrHBUZL4q6CDW8BRT5VZiYVXH2biWBvdn\neF8mEPgxh3ayAKSvtxLb1XV76XEBgFwZxt9fuHog5mHvt9AOKaQjd1uIE6K0Tuzf\nHC9kIgtcWAGMJuCCRPctTF6OO/2Q1ZanLaXUx8pQNGjXnUfbqJ66ImIzGMij5slI\n7HN6Ko9XAgMBAAECggEACeARTRluFP2FU88vF5o8EWWNTcQMpb1CsqKp3Rj0l4tQ\nzmeHOSxw5nFE0sf+k7u+Vz45jLDlBGvDK4/F4WD22YkrllyoAMufRIEeSNXMOlUu\ns2mPyIT95OaIAEQK3lIPATBSrk2tq0VYRNWl9HmE1AaQ+zRNZ8PdycoNPg6CpVeq\nUesH9Knd1VKIfMxeZ8Fs4EMFCPWpvTjqwBBPoutTbZU8QY1FY1okClbsZjCQ5DhT\njzFg5lGXDV9YGeePDWCmBDuRSnIWuX4RXbudkNgmGA1Mm/rMvJdflY2SbRtz6fl0\nRaiOrwtzIluVzT4KuiVfPUo/be4CGpgAH1vi5AdrgQKBgQDzZ00lz8OQXGHVxYv8\n2fDC2vVl9jiJL53Giru1vSgMLNKBhuGfVnwxufTiw4YJWMS+Au+Z1gHnVmArIghS\nbJo5udmF3iG7QbRzrbyVO1GXWT94maYHRWCj2c79avMXixK7URgOyZg7xpZcgJ77\nAjxPOZ30sJiscAFSQQxyyxdD1wKBgQDmBEcWtaR72HnM/6b2FSVsjNHtwwTOgT/I\nSSItejJ7vYGT7VXn9cviDQ7itkw/pp7dSh5zP5qDWB6A0Ij5EsfK8oGqenr34ICj\nKn00eVeiXwBcD4aOfyNW2nP6WiHJcmhxwOIdXxpvAVC7V0rYG/bcgMK4QPNrx8Du\ngk66Le2ggQKBgFrevxOVvEoh4zie1sNgTh1BB4q4YKT+zOV5l9iitNfOyAwpYgRN\nknIyHXWnT1wf8tuJVxBUsENAoQiZXQgAmZdhhg8PPgKd5hOl0hjYm35oiGSq4Cwo\nv4qMX1WG3xh0CFs8TEIBCz+NxUblkfTeAcwGE61tXKJL8oJV3KLipV3jAoGAUUVp\nqMh9WZTfVGNwJrrKAlSvSAcEB8L7OlU80jy+4aHPyuis1cyvQSvD+q7WuhaxQxcR\nMz9h5M6Z2IHWI8tS9I5C6m1kTXjxerVkj8ngAOr4QY7qyCZ74hBFsktubLMT3D1+\np0oXGOmqEMeDFmCrFLYaFug8GfT2Yk+AaaAYugECgYEAn9kURkX3Qqb3EHkXNpFf\nhe1jREsKhlowhgTxqgG1HcEGTjgzUZFhvNUWvkOKkN0VmuwKu+uN6MxrAa3EgyFO\nYGyEl68t79ubQmrDaBRBY4FEFNzzgEfF6OH0clgHb2bf/YH0UtVFFcfm71k4JI4K\nOatzLnXoHoCwNwEaj/fb02I=\n-----END PRIVATE KEY-----\n",
+  "client_email": "starting-account-re5av2ot2hhs@immersio-1564233311146.iam.gserviceaccount.com",
+  "client_id": "105625511475497679566",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/starting-account-re5av2ot2hhs%40immersio-1564233311146.iam.gserviceaccount.com"
+}
