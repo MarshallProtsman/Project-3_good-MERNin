@@ -1,85 +1,145 @@
 import React, { Component } from 'react';
-import MessageContainer from './MessageContainer';
+import io from 'socket.io-client';
 
-class Messenger extends Component {
-    state = {
-        convoID: 'Hello World',
-        convoUsers: [
-            {
-                userName: 'John',
-                userID: '012543',
-                langNative: 'en',
-                langTarget: 'es'
-            }
-        ],
-        messages: [
-            {
-                id: 1,
-                user: 'John',
-                msgNative: 'Hello World',
-                msgTarget: 'Hola Mundo'
-            },
-            {
-                id: 2,
-                user: 'Marshall',
-                msgNative: 'Hello World to you, as well!',
-                msgTarget: 'Hola Mundo a tu, tambien!'
-            },
-            {
-                id: 3,
-                user: 'John',
-                msgNative: 'I am speaking Spanish!',
-                msgTarget: 'Estoy hablando espanol!'
-            }
-        ]
-    }
+class Chat extends Component {
+    constructor(props) {
+        super(props);
 
-    messagePush = () => {
-        let newArray = this.state.messages; // capture existing state
-        let msgTextInput = document.getElementById('messageText'); // assign the input to a variable
-        let msgText = msgTextInput.value; // capture input text
+        // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
+        this.user = {
+            userName: 'John Robertson',
+            userEmail: 'jrobbers@getMaxListeners.com',
+            userID: 100214,
+            native: 'en',
+            target: 'fr',
+            userImg: '/public/url'
+        };
 
-        // validate the input and prevent blank messages
-        if (msgText) {
-            // capture message data, add unique key
-            let msg = {
-                id: this.state.messages.length + 1,
-                user: 'John',
-                msgNative: msgText,
-                msgTarget: `Fake translation: ${msgText}`
-            };
+        // state only needs to be maintained for the chat input and messages list
+        this.state = {
+            message: '',
+            messageList: []
+        };
 
-            newArray.push(msg); // add new message to new array
+        // pass the user profile to server to add to socket/client instance
+        this.socket = io('localhost:5000', { query: this.user}, function() {
+            console.log(io)
+        });
 
-            console.log(newArray); // tell us what's up
+        // on message receipt from server - add to state thru the addMessage call
+        this.socket.on('RECEIVE_MESSAGE', function (data) {
+            addMessage(data); // pushes to messages array
+            console.log(data); // log message from server
+        });
 
-            // set the new state to capture the additional message
-            this.setState({
-                messages: newArray
-            });
-
-            msgTextInput.value = ''; // clear out the input 
-
-        } else {
-            console.log('Message text cannot be empty...'); // you know we can't send an empty msg...
+        // add message to thread (state array) on receipt from server (translated)
+        const addMessage = data => {
+            data.key = this.state.messageList.length; // adds key to message based on messages array length
+            this.setState({ messageList: [...this.state.messageList, data] });
         }
-    }
+
+        // send message to server for translation and relay
+        this.sendMessage = ev => {
+            ev.preventDefault(); // don't be yourself
+
+            const input = document.getElementById('messageInput'); // grab input element 
+
+            // prevents blank message submission, others sends to server
+            if (this.state.message === '') {
+                input.placeholder = 'Message body cannot be empty...';
+            } else {
+                this.socket.emit('SEND_MESSAGE', {
+                    message: this.state.message,
+                    user: this.user
+                });
+                // reset the message state to clear
+                this.setState({
+                    message: ''
+                });
+                input.placeholder = 'Message'; // reset input placeholder on message send
+            };
+        };
+
+        // send message on 'Enter' key press
+        this.keyPress = ev => {
+            // console.log(ev.key); 
+            if (ev.key === 'Enter') {
+                this.sendMessage(ev);
+            }
+        };
+    };
 
     render() {
-        return (
-            <div>
-                <h1>Messenger</h1>
-                <MessageContainer messages={this.state.messages} />
-                <br />
-                <div>Input Here</div>
-                <br />
-                <input id="messageText" placeholder="Enter your message..."></input>
-                <br />
-                <button onClick={this.messagePush} > Send </button>
-            </div>
+        // style declarations
+        const styleBody = {
+            textAlign: 'center',
+            padding: '10%',
+            fontSize: 1 + 'em'
+        };
 
+        const styleInput = {
+            fontSize: 1 + 'em',
+            marginBottom: 0.33 + 'em',
+            border: '1px solid lightgrey',
+            padding: 0.33 + 'em',
+            width: '66%'
+        };
+
+        const styleButton = {
+            width: 4 + 'em',
+            fontSize: 0.88 + 'em',
+            marginTop: 1 + 'em',
+            color: 'white',
+            background: 'orangered',
+            padding: 0.22 + 'em',
+            borderRadius: 10 + 'em'
+        };
+
+        const Messages = {
+            padding: 0.33 + 'em',
+            minHeight: 1 + 'em',
+            margin: 0.33 + 'em'
+        };
+
+        const msgUser = {
+            opacity: 0.66,
+            textAlign: 'right'
+        };
+
+        const msgFriend = {
+            textAlign: 'left'
+        };
+
+        return (
+            <div style={styleBody}>
+                <h1>Immersio Chat</h1>
+                <h3>IM Chat for Immersive Language Learning</h3>
+                
+                <div className="Messages" style={Messages}>
+                    {this.state.messageList.map(message => {
+                        let msgStyle = {};
+                        if (message.user.id === this.user.id) {
+                            msgStyle = msgUser;
+                        } else {
+                            msgStyle = msgFriend;
+                        }
+                        return (
+                            <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
+                                <p>{message.user.userName}: {message.translation}</p>
+                            </div>
+                        )
+                    })
+                    }
+                </div>
+
+                <div className="ChatContainer">
+                    <input id="messageInput" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} onKeyPress={this.keyPress} type="text" placeholder="Message" className="form-control" style={styleInput} />
+                    <br />
+                    <button onClick={this.sendMessage} className="btn btn-primary form-control" style={styleButton}>SEND</button>
+                </div>
+            </div>
         )
     }
 }
 
-export default Messenger;
+export default Chat

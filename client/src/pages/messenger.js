@@ -1,16 +1,15 @@
-import React from "react";
+import React, { Component } from "react";
 import Box from "@material-ui/core/Box";
 import Messenger from '../components/messenger';
 
 
-function messengerPage() {
-    return (
-        <Box>
-            <br />
-            <Messenger />
-        </Box>
-    );
-    //mimic page
+class MessengerPage extends Component {
+    render() {
+        return (
+            <Messenger app={this.props}/>
+        )
+    }
+
 }
 
-export default messengerPage;
+export default MessengerPage;
