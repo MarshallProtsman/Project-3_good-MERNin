@@ -1,6 +1,6 @@
 const express = require("express");
-var mongoose = require("mongoose");
-var db = require("./models");
+const mongoose = require("mongoose");
+const db = require("./models");
 const path = require("path");
 const socket = require('socket.io');
 
