@@ -17,39 +17,35 @@ class App extends Component {
     this.handler = this.handler.bind(this);
   }
 
+  // new user from database on login (should come from profile page to capture changes)
+  newUser = {
+    name: 'Marsh-Man',
+    target: 'ru',
+    id: 102029
+  }
+
   // function to set app state from children
   handler() {
     this.setState({
-      login: true
+      login: true,
+      name: this.newUser.name,
+      target: this.newUser.target,
+      id: this.newUser.id
     });
     console.log('setting app state')
   };
 
   // state is the user at within app state 
-  // state = {
-  //   login: false,
-  //   user: {
-  //     name: 'Bert',
-  //     email: 'jrobertson@gmail.com',
-  //     id: 1222022,
-  //     native: 'en',
-  //     target: 'es',
-  //     img: 'url-goes-here',
-  //     friends: [],
-  //     threads: [],
-  //   }
-  // };
-
   state = {
     login: false,
-      name: 'Bert',
-      email: 'jrobertson@gmail.com',
-      id: 1222022,
-      native: 'en',
-      target: 'es',
-      img: 'url-goes-here',
-      friends: [],
-      threads: []
+    name: 'Bert',
+    email: 'jrobertson@gmail.com',
+    id: 1222022,
+    native: 'en',
+    target: 'es',
+    img: 'url-goes-here',
+    friends: [],
+    threads: []
   };
 
   render() {

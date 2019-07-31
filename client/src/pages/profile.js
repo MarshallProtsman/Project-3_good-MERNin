@@ -5,9 +5,19 @@ import NavButton from "../components/navigationbutton"
 
 class ProfilePage extends Component {
     render() {
-        var imgStyle = {
+        const imgStyle = {
             height: 200,
             width:  200
+        };
+
+        const styleButton = {
+            width: 13 + 'em',
+            fontSize: 0.88 + 'em',
+            marginTop: 1 + 'em',
+            color: 'white',
+            background: 'orangered',
+            padding: 0.22 + 'em',
+            borderRadius: 10 + 'em'
         };
 
         console.log('App state passed as prop below...');
@@ -25,7 +35,7 @@ class ProfilePage extends Component {
             <SimpleSelect/>
             <br />
             <NavButton to="/messenger" text="Start Chatting!"/>
-            <button onClick={this.props.appStateHandler}>setState (login = true)</button>
+            <button onClick={this.props.appStateHandler} style={ styleButton }>Russian Agent Marshal</button>
             </Box>
         );
     };

@@ -140,9 +140,9 @@ class Chat extends Component {
             <div style={styleBody}>
                 <h1>Immersio Chat</h1>
                 <h3>IM Chat for Immersive Language Learning</h3>
-
                 <div className="Messages" style={Messages}>
                     {this.state.messageList.map(message => {
+                        console.log(message.user.id)
                         let msgStyle = {};
                         if (message.user.id === this.user.id) {
                             msgStyle = msgUser;
@@ -163,11 +163,6 @@ class Chat extends Component {
                     <br />
                     <button onClick={this.sendMessage} className="btn btn-primary form-control" style={styleButton}>SEND</button>
                 </div>
-
-                {/* testing */}
-                {/* <button onClick={ () => {this.user = this.UserOne; console.log(this.user)}} >User One Test</button>
-                <button onClick={ () => {this.user = this.UserTwo; console.log(this.user)}} >User Two Test</button> */}
-                
             </div>
         )
     }
