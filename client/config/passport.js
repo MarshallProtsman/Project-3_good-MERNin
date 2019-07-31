@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 
 // Load User Model
-const User = require('../models/User');
+const User = require('../models/User.js');
 
 module.exports = function(passport) {
     passport.use(
@@ -34,7 +34,7 @@ module.exports = function(passport) {
         done(null, user.id);
     });
 
-    passport.deserializeUse((id, done) => {
+    passport.deserializeUser((id, done) => {
         User.findById(id, (err, user) => {
             done(err, user);
         });

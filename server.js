@@ -3,11 +3,17 @@ var mongoose = require("mongoose");
 var db = require("./models");
 const path = require("path");
 const socket = require('socket.io');
+const flash = require('connect-flash');
+const session = require('express-session');
+const passport = require('passport');
 
 require('dotenv').config(); // loading .env and config variables
 
 const PORT = process.env.PORT || 5000;
 const app = express();
+
+//Passport Config
+require('./client/config/passport.js')(passport);
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -21,6 +27,35 @@ mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
+
+//Express Session
+app.use(session({
+  secret: 'secret',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+//Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash Messages
+app.use(flash());
+
+// Global Vars
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('err_msg');
+    es.locals.error = req.flash('error');
+    next();
+});
+
+
+//Routes
+app.use('/', require('./client/src/routes/passport-index.js'))
+app.use('/users', require('./client/src/routes/passport-users.js'))
+
+
 // Define API routes here
 app.post("/login", function(req,res) {
   db.user.create(req.body)

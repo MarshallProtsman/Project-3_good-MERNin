@@ -4,8 +4,8 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 
 //User model
-const User = require('../models/User');
-const UserSession = require('../models/UserSession');
+const user = require('../../models/User.js');
+const userSession = require('../../models/UserSession.js');
 
 //Login Page
 router.get('/login', (req, res) => res.render('Login'))
@@ -97,20 +97,20 @@ router.post('/login', (req, res, next) => {
     })(req, res, next);
 });
 
-new UserSession = new UserSession();
-UserSession.userId = user._id;
-UserSession.save((err, doc) => {
-    if (err) {
-        errors.push({ msg: 'Server Error' });
-        alert('Server Error');
-    }
-});
+// new userSession = new UserSession();
+// userSession.userId = user._id;
+// userSession.save((err, doc) => {
+//     if (err) {
+//         errors.push({ msg: 'Server Error' });
+//         alert('Server Error');
+//     }
+// });
 
-return res.sed({
-    success: true,
-    message: 'Valid Sign in',
-    token: doc._id
-});
+// return res.send({
+//     success: true,
+//     message: 'Valid Sign in',
+//     token: doc._id
+// });
 
 //Logout Handle
 router.get('/logout', (req, res) => {
