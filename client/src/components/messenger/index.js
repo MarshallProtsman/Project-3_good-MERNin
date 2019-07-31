@@ -6,7 +6,30 @@ import Box from '@material-ui/core/Box'
 class Chat extends Component {
     constructor(props) {
         super(props);
-  
+
+        console.log(this.props);
+
+        this.UserOne = {
+            name: 'User One',
+            email: 'user-one@gmail.com',
+            id: 7069800122,
+            native: 'en',
+            target: 'es',
+            img: 'url/picture',
+            friends: [],
+            threads: [],
+        };
+
+        this.UserTwo = {
+            name: 'User Two',
+            email: 'user-two@gmail.com',
+            id: 7062261217,
+            native: 'en',
+            target: 'fr',
+            img: 'url/picture',
+            friends: [],
+            threads: [],
+        };
         // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
         this.user = {
             name: this.props.user.name,
@@ -17,6 +40,9 @@ class Chat extends Component {
             img: this.props.user.img
         };
 
+        console.log(this.name);
+        console.log(this.email);
+
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
@@ -24,7 +50,7 @@ class Chat extends Component {
         };
 
         // pass the user profile to server to add to socket/client instance
-        this.socket = io('localhost:5000', { query: this.user}, function() {
+        this.socket = io('localhost:5000', { query: this.user }, function () {
             console.log(io)
         });
 
@@ -120,9 +146,9 @@ class Chat extends Component {
             <div style={styleBody}>
                 <h1>Immersio Chat</h1>
                 <h3>IM Chat for Immersive Language Learning</h3>
-                
                 <div className="Messages" style={Messages}>
                     {this.state.messageList.map(message => {
+                        console.log(message.user.id)
                         let msgStyle = {};
                         if (message.user.id === this.user.id) {
                             msgStyle = msgUser;

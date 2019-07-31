@@ -6,12 +6,9 @@ import Messenger from '../components/messenger';
 class MessengerPage extends Component {
     render() {
         return (
-            <Box>
-            <Messenger user={this.props.user}/>
-            </Box>
+            <Messenger user={ this.props.app } appStateHandler={ this.props.appStateHandler }/>
         )
     }
-
 }
 
 export default MessengerPage;
