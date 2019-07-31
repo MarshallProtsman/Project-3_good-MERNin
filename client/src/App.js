@@ -7,6 +7,8 @@ import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import noMatchPage from "./pages/nomatch";
 import ProfilePage from "./pages/profile";
+// testing danbox below
+import Sandbox from "./pages/sandboxUI";
 import "./App.css";
 
 class App extends Component {
@@ -60,7 +62,8 @@ class App extends Component {
                 <Route exact path="/login" render={() => <LoginPage />} />
                 <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
                 <Route exact path="/messenger" render={() => <MessengerPage app={this.state} />} />
-                <Route component={noMatchPage} />
+                {/* sandbox testing below for material UI */}
+                <Route component={Sandbox} /> 
               </Switch>
             </div>
           </Router>
