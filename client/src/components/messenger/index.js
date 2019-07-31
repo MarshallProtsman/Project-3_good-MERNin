@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button'
 import io from 'socket.io-client';
+import Box from '@material-ui/core/Box'
 
 class Chat extends Component {
     constructor(props) {
@@ -18,8 +20,7 @@ class Chat extends Component {
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
-            messageList: [],
-            isHidden : true
+            messageList: []
         };
 
         // pass the user profile to server to add to socket/client instance
@@ -61,6 +62,7 @@ class Chat extends Component {
                 input.placeholder = 'Message'; // reset input placeholder on message send
             };
         };
+        
 
         // send message on 'Enter' key press
         this.keyPress = ev => {
@@ -102,7 +104,7 @@ class Chat extends Component {
         const Messages = {
             padding: 0.33 + 'em',
             minHeight: 1 + 'em',
-            margin: 0.33 + 'em'
+            margin: 0.33 + 'em',
         };
 
         const msgUser = {
@@ -128,10 +130,15 @@ class Chat extends Component {
                             msgStyle = msgFriend;
                         }
                         return (
-                            <div onClick={toggleMessage} style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
-                                <p>{message.message} {message.key}</p>
-                                <p>{message.user.userName}: {message.translation}</p>
-                            </div>
+                            <Box>
+                                <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
+                                
+                                    <p> {message.user.name} : {message.key} {message.message} 
+                                        <Button onClick={toggleMessage} key={message.key}> i like big butts</Button>
+                                    </p>
+                                    <p>{message.translation}</p>
+                                </div>
+                            </Box>
                         )
                     })
                     }
@@ -151,7 +158,7 @@ const toggleMessage = () => {
 
     console.log(`message clicked`);
     this.setState({
-        isHidden: !this.state.isHidden
+        
       })
     };
 
