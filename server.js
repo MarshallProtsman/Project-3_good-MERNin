@@ -84,7 +84,7 @@ io.on('connection', (socket) => {
     socket.userData = socket.handshake.query; // captures user data and attaches to socket/client
 
     // logs the new connection to server
-    console.log(`${socket.userData.userName} (id: ${socket.userData.userID}) has connected.`);
+    console.log(`${socket.userData.name} (id: ${socket.userData.id}) has connected.`);
 
     // push new client into the client array
     clients.push(socket);
