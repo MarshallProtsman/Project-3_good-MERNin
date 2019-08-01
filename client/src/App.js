@@ -7,6 +7,7 @@ import loginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import noMatchPage from "./pages/nomatch";
 import ProfilePage from "./pages/profile";
+import registerPage from "./pages/register"
 import "./App.css";
 
 class App extends Component {
@@ -32,6 +33,7 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={homePage} />
               <Route exact path="/login" component={loginPage} />
+              <Route exact path="/register" component={registerPage} />
               <Route exact path="/profile" render={() => <ProfilePage user={ this.state } />} />
               <Route exact path="/messenger" render={() => <MessengerPage user={ this.state } />} />
               <Route component={noMatchPage} />

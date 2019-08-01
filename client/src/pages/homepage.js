@@ -8,6 +8,8 @@ function homePage() {
         <br />
         <div className="#">Welcome to Immersio!</div>
         <br />
+            <NavButton to="/register" text="Register Here"/>
+            <br />
             <NavButton to="/login" text="Login Here"/>
         </Box>
     );
