@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import Button from '@material-ui/core/Button'
+import Button from '@material-ui/core/Button';
 import io from 'socket.io-client';
-import Box from '@material-ui/core/Box'
+import Box from '@material-ui/core/Box';
 
 class Chat extends Component {
     constructor(props) {
@@ -46,7 +46,8 @@ class Chat extends Component {
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
-            messageList: []
+            messageList: [],
+            isHidden: true
         };
 
         // pass the user profile to server to add to socket/client instance
@@ -99,7 +100,13 @@ class Chat extends Component {
         };
     }
 
-
+    toggleMessage = () => {
+        const {isHidden} = this.state
+            console.log(`message clicked`);
+            this.setState({
+                isHidden: !isHidden
+              })
+            };
 
     render() {
         // style declarations
@@ -158,11 +165,9 @@ class Chat extends Component {
                         return (
                             <Box>
                                 <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
-                                
-                                    <p> {message.user.name} : {message.key} {message.message} 
-                                        <Button onClick={toggleMessage} key={message.key}> i like big butts</Button>
-                                    </p>
-                                    <p>{message.translation}</p>
+                                <Button onClick={this.toggleMessage} key={message.key}>
+                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.key} {message.message}</p>) }
+                                </Button>
                                 </div>
                             </Box>
                         )
@@ -180,12 +185,4 @@ class Chat extends Component {
     }
 }
 
-const toggleMessage = () => {
-
-    console.log(`message clicked`);
-    this.setState({
-        
-      })
-    };
-
-export default Chat
+export default Chat;
