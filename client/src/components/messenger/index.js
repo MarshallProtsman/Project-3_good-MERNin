@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import io from 'socket.io-client';
-import { isAbsolute } from 'path';
+// import { isAbsolute } from 'path';
 
 class Chat extends Component {
     constructor(props) {
@@ -29,6 +29,7 @@ class Chat extends Component {
             friends: [],
             threads: [],
         };
+
         // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
         this.user = {
             name: this.props.user.name,
@@ -177,7 +178,7 @@ class Chat extends Component {
                     }
                 </div>
 
-                <div className="ChatContainer" style={ style.ChatContainer}>
+                <div className="ChatContainer" style={style.ChatContainer}>
                     <input id="messageInput" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} onKeyPress={this.keyPress} type="text" placeholder="Message" className="form-control" style={style.Input} />
                     <br />
                     <button onClick={this.sendMessage} className="btn btn-primary form-control" style={style.Button}>SEND</button>
