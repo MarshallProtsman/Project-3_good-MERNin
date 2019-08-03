@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
 import io from 'socket.io-client';
-// import { isAbsolute } from 'path';
+import Box from '@material-ui/core/Box';
 
 class Chat extends Component {
     constructor(props) {
@@ -46,7 +47,8 @@ class Chat extends Component {
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
-            messageList: []
+            messageList: [],
+            isHidden: true
         };
 
         // pass the user profile to server to add to socket/client instance
@@ -60,6 +62,7 @@ class Chat extends Component {
             console.log(data); // log message from server
         });
 
+        
         // add message to thread (state array) on receipt from server (translated)
         const addMessage = data => {
             data.key = this.state.messageList.length; // adds key to message based on messages array length
@@ -87,6 +90,7 @@ class Chat extends Component {
                 input.placeholder = 'Message'; // reset input placeholder on message send
             };
         };
+        
 
         // send message on 'Enter' key press
         this.keyPress = ev => {
@@ -95,7 +99,15 @@ class Chat extends Component {
                 this.sendMessage(ev);
             }
         };
-    };
+    }
+
+    toggleMessage = () => {
+        const {isHidden} = this.state
+            console.log(`message clicked`);
+            this.setState({
+                isHidden: !isHidden
+              })
+            };
 
     render() {
         // style declarations
@@ -170,9 +182,13 @@ class Chat extends Component {
                             msgStyle = style.msgFriend;
                         }
                         return (
-                            <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
-                                <p>{message.user.name}: {message.translation}</p>
-                            </div>
+                            <Box>
+                                <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
+                                <Button onClick={this.toggleMessage} key={message.key}>
+                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.key} {message.message}</p>) }
+                                </Button>
+                                </div>
+                            </Box>
                         )
                     })
                     }
@@ -188,4 +204,4 @@ class Chat extends Component {
     }
 }
 
-export default Chat
+export default Chat;
