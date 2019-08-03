@@ -59,14 +59,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-<<<<<<< HEAD
-// const server = express()
-//   // .use((req, res) => res.sendFile(INDEX) )
-//   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
-
-=======
->>>>>>> 18a4a0d872984cb8e6d1a1160e0a34936bdd5bb2
 const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
 
 
