@@ -5,21 +5,15 @@ const path = require("path");
 const socket = require('socket.io');
 const app = express();
 
-
 require('dotenv').config(); // loading .env and config variables
 
 const PORT = process.env.PORT || 5000;
 
-
-// marshie trying to fix socket port
-
-// const http = require("http");
-// const server = http.createServer(app);
-// console.log(`server is running on port ${PORT}`)
-
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
+app.use(express.static('public'));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 
@@ -64,10 +58,6 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-// const server = express()
-//   // .use((req, res) => res.sendFile(INDEX) )
-//   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
-
 const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
 
 
@@ -81,10 +71,10 @@ var clients = [];
 // adding user properties passed down from app to socket
 io.on('connection', (socket) => {
     // grab user info from connection handshake
-    socket.userData = socket.handshake.query; // captures user data and attaches to socket/client
+    socket.user = socket.handshake.query; // captures user data and attaches to socket/client
 
     // logs the new connection to server
-    console.log(`${socket.userData.name} (id: ${socket.userData.id}) has connected.`);
+    console.log(`${socket.user.name} (id: ${socket.user.id}) has connected.`);
 
     // push new client into the client array
     clients.push(socket);
@@ -107,7 +97,7 @@ io.on('connection', (socket) => {
                 const text = data.message;
 
                 // The target language of each client
-                const target = client.userData.target;
+                const target = client.user.target;
 
                 // Translates text into target language
                 const [translation] = await translate.translate(text, target);
@@ -116,7 +106,7 @@ io.on('connection', (socket) => {
                 data.translation = translation;
 
                 client.emit('RECEIVE_MESSAGE', data); // relay message to all clients (to be deprecated)
-                console.log(`Emitted message to ${client.userData.userName} in target language: ${client.userData.target}.`); // log message relays
+                console.log(`Emitted message to ${client.user.userName} in target language: ${client.user.target}.`); // log message relays
             }
 
             const args = process.argv.slice(2);
@@ -138,7 +128,7 @@ io.on('connection', (socket) => {
         const i = clients.indexOf(socket); // get index from client array of disconnected client
         const client = clients[i]; // get disconnected client info
 
-        console.log(`${client.userData.userName} (id: ${client.userData.userID}) has disconnected.`);
+        console.log(`${client.user.userName} (id: ${client.user.userID}) has disconnected.`);
 
         clients.splice(i, 1); // remove disconnected client from clients array
     });
