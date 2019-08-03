@@ -4,11 +4,11 @@ import NavButton from "../components/navigationbutton/index";
 import Grid from '@material-ui/core/Grid';
 
 function homePage() {
-    const imgURL = './img/splash.jpg';
+    const imgURL = './img/lady.jpg';
     const style = {
         blurb: {
             padding: '2em',
-            marginTop: '23%'
+            marginTop: '13%'
         },
         body: {
             backgroundImage: 'url(' + imgURL + ')',
@@ -25,24 +25,29 @@ function homePage() {
         item: {
             padding: '3em'
         }
+    
 
     };
 
     return (
-        <Box>
+        <Box >
             <Grid container spacing={3} style={style.gridContainer}>
-                <Grid item md={6} style={style.item}>
-                  
+                <Grid item md={4} style={style.item}>
+
                 </Grid>
-                <Grid item md={6} style={style.item}>
-                    <h1 >Welcome to Immersio!</h1>
-                    <p>Learn languages while you chat. Connect with your world.</p>
-                    <br />
-                    <NavButton to="/login" text="Login" />
+                <Grid item md={8} style={style.item}>
+                    <div style={style.blurb}>
+                        <h1>Get connected.</h1>
+                        <h1>Be immersed.</h1>
+                        
+                        <br />
+                        
+                        <img src={imgURL}></img>
+                    </div>
                 </Grid>
 
             </Grid>
-
+            <NavButton to="/login" text="Login" />
         </Box>
 
     );
