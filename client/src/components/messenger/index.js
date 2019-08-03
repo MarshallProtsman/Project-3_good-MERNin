@@ -22,6 +22,8 @@ class Chat extends Component {
         console.log(this.name);
         console.log(this.email);
 
+        // testing for commit
+
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
