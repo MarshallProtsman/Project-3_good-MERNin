@@ -21,7 +21,7 @@ const font = 'Baloo Chettan';
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#E03616'
+      main: '#ffffff'
     },
     secondary: green,
   },
@@ -75,8 +75,8 @@ class App extends Component {
 
   render() {
     return (
-      <ThemeProvider theme={theme} >
-        {/* <ButtonAppBar /> */}
+      <ThemeProvider theme={theme}>
+        <ButtonAppBar />
         <Router>
           <div>
             <Switch>
