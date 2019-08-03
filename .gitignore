@@ -5,6 +5,8 @@ node_modules
 /.pnp
 .pnp.js
 /client/node_modules
+.env
+google_api.json
 
 # testing
 /coverage
