@@ -32,7 +32,7 @@ class Chat extends Component {
         };
 
         // pass the user profile to server to add to socket/client instance
-        this.socket = io('localhost:5000', { query: this.user }, function () {
+        this.socket = io({ query: this.user }, function () {
             console.log(io)
         });
 
