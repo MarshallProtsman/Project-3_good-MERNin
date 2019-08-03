@@ -17,23 +17,34 @@ function homePage() {
             backgroundPosition: 'left',
             height: '94vh',
             width: '100%',
-            textAlign: 'left',
+            textAlign: 'center',
+        },
+        gridContainer: {
+            color: '#000000'
+        },
+        item: {
+            padding: '3em'
         }
-        
+
     };
 
     return (
-        <Box style={style.body}>
-            <Grid container>
-            <Grid item xs={1}></Grid>
-                <Grid item lg={6} sm={12} xs={12} style={style.blurb}>
+        <Box>
+            <Grid container spacing={3} style={style.gridContainer}>
+                <Grid item md={6} style={style.item}>
+                  
+                </Grid>
+                <Grid item md={6} style={style.item}>
                     <h1 >Welcome to Immersio!</h1>
                     <p>Learn languages while you chat. Connect with your world.</p>
                     <br />
                     <NavButton to="/login" text="Login" />
                 </Grid>
+
             </Grid>
+
         </Box>
+
     );
 }
 
