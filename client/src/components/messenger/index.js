@@ -30,6 +30,7 @@ class Chat extends Component {
             friends: [],
             threads: [],
         };
+
         // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
         this.user = {
             name: this.props.user.name,
@@ -112,57 +113,75 @@ class Chat extends Component {
 
     render() {
         // style declarations
-        const styleBody = {
-            textAlign: 'center',
-            padding: '10%',
-            fontSize: 1 + 'em'
-        };
+        const style = {
+            Body: {
+                textAlign: 'center',
+                // padding: '10%',
+                fontSize: 1 + 'em',
+                height: 80 + 'vh'
+            },
 
-        const styleInput = {
-            fontSize: 1 + 'em',
-            marginBottom: 0.33 + 'em',
-            border: '1px solid lightgrey',
-            padding: 0.33 + 'em',
-            width: '66%'
-        };
+            Input: {
+                fontSize: 1 + 'em',
+                marginBottom: 0.33 + 'em',
+                border: '1px solid lightgrey',
+                padding: 0.33 + 'em',
+                width: '66%'
+            },
 
-        const styleButton = {
-            width: 4 + 'em',
-            fontSize: 0.88 + 'em',
-            marginTop: 1 + 'em',
-            color: 'white',
-            background: 'orangered',
-            padding: 0.22 + 'em',
-            borderRadius: 10 + 'em'
-        };
+            Button: {
+                width: 4 + 'em',
+                fontSize: 0.88 + 'em',
+                marginTop: 1 + 'em',
+                color: 'white',
+                background: 'orangered',
+                padding: 0.22 + 'em',
+                borderRadius: 10 + 'em'
+            },
 
-        const Messages = {
-            padding: 0.33 + 'em',
-            minHeight: 1 + 'em',
-            margin: 0.33 + 'em',
-        };
+            Messages: {
+                paddingRight: 1.33 + 'em',
+                minHeight: 1 + 'em',
+                margin: 0.33 + 'em',
+                position: 'absolute',
+                bottom: '9em',
+                width: '100%',
+                background: 'cyan',
+                left: 0,
+                margin: 'auto'
+            },
 
-        const msgUser = {
-            opacity: 0.66,
-            textAlign: 'right'
-        };
+            msgUser: {
+                opacity: 0.66,
+                textAlign: 'right'
+            },
 
-        const msgFriend = {
-            textAlign: 'left'
-        };
+            msgFriend: {
+                textAlign: 'left'
+            },
+
+            ChatContainer: {
+                position: 'absolute',
+                width: 100 + '%',
+                margin: 'auto',
+                borderTop: '2px solid lightgrey',
+                left: 0,
+                bottom: 2 + 'em',
+                paddingTop: '2em'
+            }
+        }
 
         return (
-            <div style={styleBody}>
-                <h1>Immersio Chat</h1>
-                <h3>IM Chat for Immersive Language Learning</h3>
-                <div className="Messages" style={Messages}>
+            <div style={style.Body}>
+                <p>Chat Profile Pics Here</p>
+                <div className="Messages" style={style.Messages}>
                     {this.state.messageList.map(message => {
                         console.log(message.user.id)
                         let msgStyle = {};
                         if (message.user.id === this.user.id) {
-                            msgStyle = msgUser;
+                            msgStyle = style.msgUser;
                         } else {
-                            msgStyle = msgFriend;
+                            msgStyle = style.msgFriend;
                         }
                         return (
                             <Box>
@@ -177,10 +196,10 @@ class Chat extends Component {
                     }
                 </div>
 
-                <div className="ChatContainer">
-                    <input id="messageInput" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} onKeyPress={this.keyPress} type="text" placeholder="Message" className="form-control" style={styleInput} />
+                <div className="ChatContainer" style={style.ChatContainer}>
+                    <input id="messageInput" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} onKeyPress={this.keyPress} type="text" placeholder="Message" className="form-control" style={style.Input} />
                     <br />
-                    <button onClick={this.sendMessage} className="btn btn-primary form-control" style={styleButton}>SEND</button>
+                    <button onClick={this.sendMessage} className="btn btn-primary form-control" style={style.Button}>SEND</button>
                 </div>
             </div>
         )
