@@ -9,28 +9,6 @@ class Chat extends Component {
 
         console.log(this.props);
 
-        this.UserOne = {
-            name: 'User One',
-            email: 'user-one@gmail.com',
-            id: 7069800122,
-            native: 'en',
-            target: 'es',
-            img: 'url/picture',
-            friends: [],
-            threads: [],
-        };
-
-        this.UserTwo = {
-            name: 'User Two',
-            email: 'user-two@gmail.com',
-            id: 7062261217,
-            native: 'en',
-            target: 'fr',
-            img: 'url/picture',
-            friends: [],
-            threads: [],
-        };
-
         // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
         this.user = {
             name: this.props.user.name,
@@ -43,6 +21,8 @@ class Chat extends Component {
 
         console.log(this.name);
         console.log(this.email);
+
+        // testing for commit
 
         // state only needs to be maintained for the chat input and messages list
         this.state = {
@@ -136,7 +116,7 @@ class Chat extends Component {
                 color: 'white',
                 background: 'orangered',
                 padding: 0.22 + 'em',
-                borderRadius: 10 + 'em'
+                border: 'none'
             },
 
             Messages: {
