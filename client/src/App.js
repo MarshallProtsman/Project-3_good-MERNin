@@ -2,12 +2,36 @@ import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Container from "@material-ui/core/Container";
 import ButtonAppBar from "./components/navbar";
+import Box from "@material-ui/core/Box";
 import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
-import noMatchPage from "./pages/nomatch";
 import ProfilePage from "./pages/profile";
+
+// testing danbox below
+import Sandbox from "./pages/sandboxUI";
 import "./App.css";
+
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import green from '@material-ui/core/colors/green';
+
+const font = 'Baloo Chettan';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#D64550'
+    },
+    secondary: green,
+  },
+  status: {
+    danger: 'orange',
+  },
+  typography: {
+    fontFamily: font
+  },
+});
 
 class App extends Component {
   constructor() {
@@ -50,24 +74,22 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <ThemeProvider theme={theme} >
         <ButtonAppBar />
-        <Container>
-          <Router>
-            <div>
-              <Switch>
-                <Route exact path="/" component={homePage} />
-                <Route exact path="/login" render={() => <LoginPage />} />
-                <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
-                <Route exact path="/messenger" render={() => <MessengerPage app={this.state} />} />
-                <Route component={noMatchPage} />
-              </Switch>
-            </div>
-          </Router>
-        </Container>
-      </div>
+        <Router>
+          <div>
+            <Switch>
+              <Route exact path="/" component={homePage} />
+              <Route exact path="/login" render={() => <LoginPage />} />
+              <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
+              <Route exact path="/messenger" render={() => <MessengerPage app={this.state} />} />
+              {/* sandbox testing below for material UI */}
+              <Route component={Sandbox} />
+            </Switch>
+          </div>
+        </Router>
+      </ThemeProvider>
     )
-
   }
 }
 
