@@ -2,10 +2,10 @@ const express = require("express");
 const mongoose = require("mongoose");
 const db = require("./models");
 const path = require("path");
-const socket = require('socket.io');
+const socket = require("socket.io");
 const app = express();
 
-const {GoogleAuth} = require('google-auth-library');
+const { GoogleAuth } = require("google-auth-library");
 
 /**
  * Instead of specifying the type of client you'd like to use (JWT, OAuth2, etc)
@@ -13,7 +13,7 @@ const {GoogleAuth} = require('google-auth-library');
  */
 async function main() {
   const auth = new GoogleAuth({
-    scopes: 'https://www.googleapis.com/auth/cloud-platform'
+    scopes: "https://www.googleapis.com/auth/cloud-platform"
   });
   const client = await auth.getClient();
   const projectId = await auth.getProjectId();
@@ -26,7 +26,7 @@ main().catch(console.error);
 
 //END GCP CREDS
 
-require('dotenv').config(); // loading .env and config variables
+require("dotenv").config(); // loading .env and config variables
 
 const PORT = process.env.PORT || 5000;
 
@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // serve static assets
-app.use(express.static('public'));
+app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 
@@ -46,30 +46,26 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Define API routes here
-app.post("/login", function(req,res) {
-  db.user.create(req.body)
-  .then(function(dbUser) {
+app.post("/login", function(req, res) {
+  db.user.create(req.body).then(function(dbUser) {
     console.log(dbUser);
   });
 });
 
-app.get("/messenger", function(req,res) {
-  db.message.find(req.body)
-  .then(function(dbMessage) {
+app.get("/messenger", function(req, res) {
+  db.message.find(req.body).then(function(dbMessage) {
     console.log(dbMessage);
   });
 });
 
-app.post("/messenger", function(req,res) {
-  db.message.create(req.body)
-  .then(function(dbMessage) {
-    console.log(dbMessage)
+app.post("/messenger", function(req, res) {
+  db.message.create(req.body).then(function(dbMessage) {
+    console.log(dbMessage);
   });
 });
 
-app.delete("/messenger", function(req,res) {
-  db.message.deleteOne(req.body)
-  .then(function(dbMessage) {
+app.delete("/messenger", function(req, res) {
+  db.message.deleteOne(req.body).then(function(dbMessage) {
     console.log(dbMessage);
   });
 });
@@ -80,8 +76,9 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));
-
+const server = app.listen(PORT, () =>
+  console.log(`server is running on port ${PORT}`)
+);
 
 // ===== BEGIN SOCKET.IO ================================================== //
 const io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
@@ -91,70 +88,96 @@ var clients = [];
 
 // event on connection - adds user profile info to the new connection
 // adding user properties passed down from app to socket
-io.on('connection', (socket) => {
-    // grab user info from connection handshake
-    socket.user = socket.handshake.query; // captures user data and attaches to socket/client
+io.on("connection", socket => {
+  // grab user info from connection handshake
+  socket.user = socket.handshake.query; // captures user data and attaches to socket/client
 
-    // logs the new connection to server
-    console.log(`${socket.user.name} (id: ${socket.user.id}) has connected.`);
+  // logs the new connection to server
+  console.log(`${socket.user.name} (id: ${socket.user.id}) has connected.`);
 
-    // push new client into the client array
-    clients.push(socket);
+  // push new client into the client array
+  clients.push(socket);
 
-    // handle messages and relay to connected clients
-    socket.on('SEND_MESSAGE', function (data) {
-        console.log(data); // logs message object on receit
+  // handle messages and relay to connected clients
+  socket.on("SEND_MESSAGE", function(data) {
+    console.log(data); // logs message object on receit
 
-        // ===== BEGIN RELAY LOOP ================================================= //
-        clients.forEach((client) => {
-            // ===== BEGIN GOOGLE TRANSLATE API CALL  ================================= //
-            async function main(
-                projectId = process.env.GOOGLE_CLOUD_PROJECT_ID
-            ) {
-                // Imports the Google Cloud client library
-                const { Translate } = require('@google-cloud/translate');
-                const translate = new Translate({ projectId });
+    // ===== BEGIN RELAY LOOP ================================================= //
+    clients.forEach(client => {
+      // ===== BEGIN GOOGLE TRANSLATE API CALL  ================================= //
+      async function main(projectId = process.env.GOOGLE_CLOUD_PROJECT_ID) {
 
-                // The text to translate from message 
-                const text = data.message;
+        //Begin
+        const { JWT } = require("google-auth-library");
+        const keys = require("../../GCP/ExploratoryProject1-a429df58be31.json");
+        // const keys = require('./jwt.keys.json');
 
-                // The target language of each client
-                const target = client.user.target;
+        async function main() {
+          const client = new JWT(keys.client_email, null, keys.private_key, [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]);
+          const url = `https://www.googleapis.com/dns/v1/projects/${
+            keys.project_id
+          }`;
+          const res = await client.request({ url });
+          console.log(res.data);
+        }
 
-                // Translates text into target language
-                const [translation] = await translate.translate(text, target);
+        main().catch(console.error);
+        //END
 
-                // adds translated message to msg object 
-                data.translation = translation;
+        // Imports the Google Cloud client library
+        const { Translate } = require("@google-cloud/translate");
+        const translate = new Translate({ projectId });
 
-                client.emit('RECEIVE_MESSAGE', data); // relay message to all clients (to be deprecated)
-                console.log(`Emitted message to ${client.user.userName} in target language: ${client.user.target}.`); // log message relays
-            }
+        // The text to translate from message
+        const text = data.message;
 
-            const args = process.argv.slice(2);
+        // The target language of each client
+        const target = client.user.target;
 
-            main(...args).catch((err) => {
-                console.log(err); // log error for debugging
+        // Translates text into target language
+        const [translation] = await translate.translate(text, target);
 
-                data.translation = `Error occured.  Failed to translate: '${data.message}.'`;// send error message to clients
-                
-                client.emit('RECEIVE_MESSAGE', data); // relay error message to all clients (to be deprecated)
-            });
-            // ===== END GOOGLE TRANSLATE API CALL  =================================== //
-        });
-        // ===== END RELAY LOOP =================================================== //
+        // adds translated message to msg object
+        data.translation = translation;
+
+        client.emit("RECEIVE_MESSAGE", data); // relay message to all clients (to be deprecated)
+        console.log(
+          `Emitted message to ${client.user.userName} in target language: ${
+            client.user.target
+          }.`
+        ); // log message relays
+      }
+
+      const args = process.argv.slice(2);
+
+      main(...args).catch(err => {
+        console.log(err); // log error for debugging
+
+        data.translation = `Error occured.  Failed to translate: '${
+          data.message
+        }.'`; // send error message to clients
+
+        client.emit("RECEIVE_MESSAGE", data); // relay error message to all clients (to be deprecated)
+      });
+      // ===== END GOOGLE TRANSLATE API CALL  =================================== //
     });
+    // ===== END RELAY LOOP =================================================== //
+  });
 
-    // handle disconnections
-    socket.on('disconnect', function () {
-        const i = clients.indexOf(socket); // get index from client array of disconnected client
-        const client = clients[i]; // get disconnected client info
+  // handle disconnections
+  socket.on("disconnect", function() {
+    const i = clients.indexOf(socket); // get index from client array of disconnected client
+    const client = clients[i]; // get disconnected client info
 
-        console.log(`${client.user.userName} (id: ${client.user.userID}) has disconnected.`);
+    console.log(
+      `${client.user.userName} (id: ${client.user.userID}) has disconnected.`
+    );
 
-        clients.splice(i, 1); // remove disconnected client from clients array
-    });
-})
+    clients.splice(i, 1); // remove disconnected client from clients array
+  });
+});
 // ===== END SOCKET.IO ==================================================== //
 
 // const {JWT} = require('google-auth-library');
