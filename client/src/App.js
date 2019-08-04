@@ -79,7 +79,7 @@ class App extends Component {
   render() {
     return (
       <ThemeProvider theme={theme} className="App">
-      <Fade clear delay={3000}>
+      <Fade clear delay={2400}>
       <ButtonAppBar />
       </Fade>
         
