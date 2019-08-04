@@ -7,7 +7,7 @@ import BlockRevealAnimation from 'react-block-reveal-animation';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-
+import { Redirect } from 'react-router';
 
 import Fade from 'react-reveal/Fade';
 
@@ -15,8 +15,9 @@ import Fade from 'react-reveal/Fade';
 class Sandbox extends Component {
 
     render() {
-        const element = <FontAwesomeIcon icon={faCoffee} />
+        
 
+        
         const imgURL = './img/lady.jpg';
         const person1 = './img/person1.jpg';
         const style = {
@@ -34,7 +35,7 @@ class Sandbox extends Component {
                 paddingTop: '16%'
             },
             sectionTwo: {
-                marginTop: '12em',
+                marginTop: '10em',
                 // background: '#000000'
             },
             textBig: {
@@ -143,13 +144,7 @@ class Sandbox extends Component {
                         <Fade clear >
                             <h1>About the App</h1>
                             <Typography style={{ fontSize: '1.11em' }}>
-                                <p>Immersion has been proven to be the most effective way to learn a new language.
-                        What better way to to learn than while talking with friends and family?</p>
-                                <p>Immersio does just that.  Users to chat in real time, displaying their messages in their target langauge.</p>
-
-                                <p>Messages can calso be toggled to show the translated message in the user's native language.</p>
-                                <p>
-                                    Available languages include English, Spanish, French, and Italian.</p>
+                            <p>Immersio is built with the MERN stack.</p>
                             </Typography>
                         </Fade>
                     </Grid>
