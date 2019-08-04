@@ -109,8 +109,8 @@ io.on("connection", socket => {
 
         //Begin
         const { JWT } = require("google-auth-library");
-        const keys = require("../../GCP/googlecreds.json");
-        // const keys = require('./jwt.keys.json');
+        // const keys = require("../../GCP/googlecreds.json");
+        const keys = require('./jwt.keys.json');
 
         async function main() {
           const client = new JWT(keys.client_email, null, keys.private_key, [
