@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import Box from "@material-ui/core/Box";
 import TextField from '@material-ui/core/TextField';
 import NavButton from "../navigationbutton";
-import Button from "@material-ui/core/Button"
+import Button from "@material-ui/core/Button";
+import BlockRevealAnimation from 'react-block-reveal-animation';
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 export default class LoginForm extends Component {
 
@@ -32,10 +35,15 @@ export default class LoginForm extends Component {
 
   render() {
     return (
-      <Box>
-        <br />
-        <form className="" onSubmit={this.onSubmit}>
-          <TextField
+      
+      <Container style={{paddingTop: '10em'}}>
+      
+          <Grid container spacing={6}>
+          <Grid item lg={3} sm={3} ></Grid>
+            <Grid item lg={6} sm={6} xs={12} >
+            <form className="" onSubmit={this.onSubmit}>
+            <div>
+            <TextField style={{width: '100%'}}
             required
             id="standard-required"
             label="Name"
@@ -45,7 +53,9 @@ export default class LoginForm extends Component {
             value={this.state.name}
             onChange={this.handleNameChange}
           />
-          <TextField
+            </div>
+        <div>
+          <TextField style={{width: '100%'}}
             required
             id="standard-password-input"
             label="Password"
@@ -56,13 +66,18 @@ export default class LoginForm extends Component {
             value={this.state.password}
             onChange={this.handlePasswordChange}
           />
+          </div>
           <br />
           <Button type="submit" variant="contained" color="primary">Submit</Button>
           <br />
         </form>
         <br />
         <NavButton to="/profile" text="temp Nav to profile" />
-      </Box>
+            </Grid>
+            <Grid item lg={3} ></Grid>
+          </Grid>
+         
+          </Container>
     )
   };
 }

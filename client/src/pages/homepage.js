@@ -5,9 +5,6 @@ import Container from "@material-ui/core/Container";
 import { Typography } from '@material-ui/core';
 import BlockRevealAnimation from 'react-block-reveal-animation';
 import { Link } from 'react-router-dom';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
-import { Redirect } from 'react-router';
 
 import Fade from 'react-reveal/Fade';
 
@@ -15,9 +12,7 @@ import Fade from 'react-reveal/Fade';
 class Sandbox extends Component {
 
     render() {
-        
 
-        
         const imgURL = './img/lady.jpg';
         const person1 = './img/person1.jpg';
         const style = {
@@ -64,21 +59,20 @@ class Sandbox extends Component {
 
         return (
             <Box style={style.page}>
+
                 <p style={style.scroll}>S C R O L L</p>
                 <Fade clear delay={500}>
-                    <Container style={style.sectionOne}>
 
+                    <Container style={style.sectionOne}>
                         <BlockRevealAnimation delay={1} color="#80CED7">
                             <Typography>
                                 <h1 style={{ opacity: 0.33 }}>Bonjour.</h1>
-                                <FontAwesomeIcon icon="coffee" />
                             </Typography>
-
                         </BlockRevealAnimation>
-
                         <br />
+
                         <Grid container spacing={6}>
-                            <Grid item md={2}>
+                            <Grid item md={2} xs={2}>
                             </Grid>
                             <Grid item md={10}>
                                 {/* <Typography > */}
@@ -100,43 +94,42 @@ class Sandbox extends Component {
                                 </div>
                             </Grid>
                         </Grid>
-
                     </Container>
                 </Fade>
-                <Grid container spacing={6} style={style.sectionTwo}>
-                    <Grid item md={2}></Grid>
-                    <Grid item md={5}>
-                        <Fade clear >
-                            <h1>Welcome to Immersio.</h1>
-                            <Typography style={{ fontSize: '1.11em' }}>
-                                <p>Immersion has been proven to be the most effective way to learn a new language.
-                        What better way to to learn than while talking with friends and family?</p>
-                                <p>Immersio does just that.  Users to chat in real time, displaying their messages in their target langauge.</p>
+                <Container>
+                    <Grid container spacing={3} style={style.sectionTwo}>
+                        <Grid item md={2}></Grid>
+                        <Grid item md={6} style={{ padding: '4em' }}>
 
-                                <p>Messages can calso be toggled to show the translated message in the user's native language.</p>
-                                <p>
-                                    Available languages include English, Spanish, French, and Italian.</p>
-                            </Typography>
-                        </Fade>
+                            <Fade clear >
+                                <h1>Welcome to Immersio.</h1>
+                                <Typography style={{ fontSize: '1.11em' }}>
+                                    <p>Immersion has been proven to be the most effective way to learn a new language.
+                                    What better way to to learn than while talking with friends and family?</p>
+                                    <p>Immersio does just that.  Users to chat in real time, displaying their messages in their target langauge.</p>
+                                    <p>Messages can calso be toggled to show the translated message in the user's native language.</p>
+                                    <p>Available languages include English, Spanish, French, and Italian.</p>
+                                </Typography>
+                            </Fade>
 
-                        <Fade up>
-                            <Typography>
-                                <Link to="/login"> <button type="button" style={style.button} >
-                                    <h3>L O G I N</h3>
-                                </button>
-                                </Link>
-
-                            </Typography>
-                        </Fade>
+                            {/* login button */}
+                            <Fade up>
+                                <Typography>
+                                    <Link to="/login"> <button type="button" style={style.button} >
+                                        <h3>L O G I N</h3>
+                                    </button>
+                                    </Link>
+                                </Typography>
+                            </Fade>
+                        </Grid>
                     </Grid>
-                </Grid>
-
+                </Container>
+                {/* fullwidth image */}
                 <div style={{ marginTop: '10em' }}>
                     <Fade clear>
                         <img src={person1}></img>
                     </Fade>
                 </div>
-
 
                 <Grid container spacing={6} style={style.sectionFour} style={{ marginTop: '10em' }}>
                     <Grid item md={2}></Grid>
@@ -144,7 +137,7 @@ class Sandbox extends Component {
                         <Fade clear >
                             <h1>About the App</h1>
                             <Typography style={{ fontSize: '1.11em' }}>
-                            <p>Immersio is built with the MERN stack.</p>
+                                <p>Immersio is built with the MERN stack.</p>
                             </Typography>
                         </Fade>
                     </Grid>
