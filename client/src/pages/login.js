@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 class LoginPage extends Component {
     render() {
         return (
-            <Box style={{ background: 'black', height: '94vh' }}>
+            <Box style={{ height: '94vh' }}>
                 <Grid container>
                     <Grid item lg={4}></Grid>
                     <Grid item lg={4}>  

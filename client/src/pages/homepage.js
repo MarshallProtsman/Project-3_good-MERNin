@@ -24,28 +24,38 @@ function homePage() {
         },
         item: {
             padding: '3em'
+        },
+        bigText: {
+            fontSize: '3em',
+            color: '#EB8258'
+        },
+        scroll: {
+            alignText: 'left',
+            color: 'red',
         }
-    
-
     };
 
     return (
         <Box >
             <Grid container spacing={3} style={style.gridContainer}>
-                <Grid item md={4} style={style.item}>
-
+                <Grid item md={4} xs={12} style={style.item}>
+                <br />
                 </Grid>
-                <Grid item md={8} style={style.item}>
+                <Grid item md={8} xs={12} style={style.item}>
                     <div style={style.blurb}>
-                        <h1>Get connected.</h1>
-                        <h1>Be immersed.</h1>
-                        
+                        <h1 style={style.bigText} >Get connected.  Be immersed.</h1>
                         <br />
-                        
                         <img src={imgURL}></img>
                     </div>
                 </Grid>
-
+</Grid>
+                <Grid container spacing={3}>
+                <Grid item md={6} style={style.item}>
+                <h5>Language translation chat app. 
+                    Powered by Google, Socket.io, and MERN.
+                    </h5>   
+                <p>Connect with your world with Immersio.  </p>
+                </Grid>
             </Grid>
             <NavButton to="/login" text="Login" />
         </Box>

@@ -21,8 +21,8 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
 // Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+if (process.env.NODE_ENV === "development") {
+  app.use(express.static("client/public"));
 }
 // Define API routes here
 app.post("/login", function(req,res) {
@@ -56,7 +56,7 @@ app.delete("/messenger", function(req,res) {
 // Send every other request to the React app
 // Define any API routes before this runs
 app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
 const server = app.listen(PORT, () => console.log(`server is running on port ${PORT}`));

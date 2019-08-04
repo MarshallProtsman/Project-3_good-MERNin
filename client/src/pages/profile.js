@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button"
 
 class ProfilePage extends Component {
     
+
     state = {
         name: this.props.app.name,
         email: this.props.app.email,
@@ -21,6 +22,9 @@ class ProfilePage extends Component {
 
     handleImgChange = (event) => {
         this.setState({ img: event.target.value });
+        this.props.appStateHandler({
+            img: event.target.value
+        })
     };
 
     onSubmit = (event) => {
@@ -46,7 +50,7 @@ class ProfilePage extends Component {
 
         console.log('App state passed as prop below...');
         console.log(this.props.app.name);
-
+        console.log(this.props);
         return (
             <Box>
                 <br />

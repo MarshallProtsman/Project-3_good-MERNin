@@ -32,13 +32,14 @@ class Chat extends Component {
         };
 
         // pass the user profile to server to add to socket/client instance
-        // // this.socket = io('localhost:5000/', { query: this.user }, function () {
+       this.socket = io('localhost:5000/', { query: this.user }, function () {
+       console.log(io)
+        });
+        
+        // pass the user profile to server to add to socket/client instance
+        // this.socket = io('localhost:3000' || 'localhost:5000/', { query: this.user }, function () {
         //     console.log(io)
         // });
-        // pass the user profile to server to add to socket/client instance
-        this.socket = io('https://good-mernin.herokuapp.com/' || 'localhost:5000/', { query: this.user }, function () {
-            console.log(io)
-        });
 
         // on message receipt from server - add to state thru the addMessage call
         this.socket.on('RECEIVE_MESSAGE', function (data) {
