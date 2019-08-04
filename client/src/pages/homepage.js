@@ -61,7 +61,7 @@ class Sandbox extends Component {
             <Box style={style.page}>
 
                 <p style={style.scroll}>S C R O L L</p>
-                <Fade clear delay={500}>
+                <Fade clear delay={200}>
 
                     <Container style={style.sectionOne}>
                         <BlockRevealAnimation delay={1} color="#80CED7">
