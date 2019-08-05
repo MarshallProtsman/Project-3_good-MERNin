@@ -13,8 +13,6 @@ import Button from '@material-ui/core/Button';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 
-
-
 // testing danbox below
 import Sandbox from "./pages/sandboxUI";
 import "./App.css";
@@ -60,7 +58,6 @@ class App extends Component {
 
   // handles updating app state from args passed from child
   handler = (name, native, target, email, id) => {
-    console.log(name)
     this.setState({
       name: name,
       native: native,

@@ -129,7 +129,6 @@ class Chat extends Component {
                 position: 'absolute',
                 bottom: '9em',
                 width: '100%',
-                background: 'cyan',
                 left: 0,
                 margin: 'auto'
             },
