@@ -5,6 +5,9 @@ import NavButton from "../components/navigationbutton";
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+
 class LoginPage extends Component {
     style = {
         button: {
@@ -13,6 +16,7 @@ class LoginPage extends Component {
             borderRadius: '0em',
             margin: '0 2em 1em 0',
             width: '6em',
+            fontSize: '1.11em'
         }
 
     }
@@ -73,9 +77,9 @@ class LoginPage extends Component {
                 <LoginForm />
                 <Grid container spacing={2}>
                     <Grid item lg={3}></Grid>
-                    <Grid item lg={6} style={{ textAlign: 'center', paddingTop: '5%' }}>
+                    <Grid item lg={6} sm={12} style={{ textAlign: 'center', paddingTop: '5%' }}>
                         {/* <Button style={this.style.button} onClick={this.updateParent}>Update</Button> */}
-                        <Button style={this.style.button} onClick={this.updateJohn}>J o h n</Button>
+                        <Button style={this.style.button} onClick={this.updateJohn}>John</Button>
                         <Button style={this.style.button} onClick={this.updateDavid}>David</Button>
                         <Button style={this.style.button} onClick={this.updateChaney}>Chaney</Button>
                         <Button style={this.style.button} onClick={this.updateMarshall}>Marshall</Button>

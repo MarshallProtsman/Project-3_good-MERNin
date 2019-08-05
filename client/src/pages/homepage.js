@@ -96,7 +96,7 @@ class Sandbox extends Component {
                         </Grid>
                     </Container>
                 </Fade>
-                <Container>
+                
                     <Grid container spacing={3} style={style.sectionTwo}>
                         <Grid item md={2}></Grid>
                         <Grid item md={6} style={{ padding: '4em' }}>
@@ -123,7 +123,7 @@ class Sandbox extends Component {
                             </Fade>
                         </Grid>
                     </Grid>
-                </Container>
+                
                 {/* fullwidth image */}
                 <div style={{ marginTop: '10em' }}>
                     <Fade clear>
@@ -138,6 +138,7 @@ class Sandbox extends Component {
                             <h1>About the App</h1>
                             <Typography style={{ fontSize: '1.11em' }}>
                                 <p>Immersio is built with the MERN stack.</p>
+                                <p>The backend leverages Node.js and Express to serve assets.</p>
                             </Typography>
                         </Fade>
                     </Grid>
