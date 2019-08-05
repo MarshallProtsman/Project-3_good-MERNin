@@ -7,6 +7,13 @@ import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import ProfilePage from "./pages/profile";
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+
+
 
 // testing danbox below
 import Sandbox from "./pages/sandboxUI";
@@ -16,12 +23,14 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
 import green from '@material-ui/core/colors/green';
 
-const font = 'Baloo Chettan';
+import Fade from 'react-reveal/Fade';
+
+const font = 'Playfair Display';
 
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: '#ffffff'
+      main: 'rgba(255,255,255, 0)'
     },
     secondary: green,
   },
@@ -36,52 +45,43 @@ const theme = createMuiTheme({
 
 class App extends Component {
   constructor() {
-    super();
+    super(); // needed for this keyword
 
-    // binds the handler function to the app state to manage users across pages
-    this.handler = this.handler.bind(this);
-  }
+    // state is the user at within app state 
+    this.state = {
+      name: 'Bert',
+      email: 'jrobertson@gmail.com',
+      id: 1222022,
+      native: 'en',
+      target: 'es',
+      img: 'url-goes-here',
+    };
+  };
 
-  // new user from database on login (should come from profile page to capture changes)
-  newUser = {
-    name: 'Marsh-Man',
-    target: 'ru',
-    id: 102029
-  }
-
-  // function to set app state from children
-  handler() {
+  // handles updating app state from args passed from child
+  handler = (name, native, target, email, id) => {
+    console.log(name)
     this.setState({
-      login: true,
-      name: this.newUser.name,
-      target: this.newUser.target,
-      id: this.newUser.id
-    });
-    console.log('setting app state')
-  };
-
-  // state is the user at within app state 
-  state = {
-    login: false,
-    name: 'Bert',
-    email: 'jrobertson@gmail.com',
-    id: 1222022,
-    native: 'en',
-    target: 'es',
-    img: 'url-goes-here',
-    friends: [],
-    threads: []
-  };
+      name: name,
+      native: native,
+      target: target,
+      email: email,
+      id: id
+    })
+  }
 
   render() {
     return (
-      <ThemeProvider theme={theme}>
-        <ButtonAppBar />
+      <ThemeProvider theme={theme} className="App">
+        <Fade clear delay={2400}>
+          <ButtonAppBar />
+        </Fade>
+
         <Router>
           <div>
             <Switch>
               <Route exact path="/" component={homePage} />
-              <Route exact path="/login" render={() => <LoginPage />} />
+              <Route exact path="/login" render={() => <LoginPage app={this.state} appStateHandler={this.handler}/>} />
               <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
               <Route exact path="/messenger" render={() => <MessengerPage app={this.state} />} />
               {/* sandbox testing below for material UI */}

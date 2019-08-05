@@ -6,10 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
+import NavButton from '../navigationbutton';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -25,15 +30,19 @@ export default function ButtonAppBar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="fixed">
+      
         <Toolbar>
           <Grid container>
             <Grid item md={4}>
               <h1>Immersio</h1>
             </Grid>
           </Grid>
+          
           <Button color="inherit"><Icon>menu</Icon></Button>
         </Toolbar>
       </AppBar>
+
+      
     </div>
   );
 }
