@@ -30,12 +30,12 @@ export default class LoginForm extends Component {
       method: "GET",
       url: "/login",
       data: {
-        userName: "SpaceSloth",
-        password: "password1"
+        userName: this.state.name,
+        password: this.state.password
       },
     })
     .then(response =>
-      console.log(response.data)
+      console.log(response)
     )
   }
 
