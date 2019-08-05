@@ -68,7 +68,7 @@ export default class LoginForm extends Component {
                 />
               </div>
               <br />
-              <Button type="submit" variant="contained" color="primary">Submit</Button>
+              {/* <Button type="submit" variant="contained" color="primary">Submit</Button> */}
               <br />
             </form>
             <br />

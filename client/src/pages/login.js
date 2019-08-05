@@ -3,9 +3,19 @@ import Box from "@material-ui/core/Box";
 import LoginForm from "../components/loginform";
 import NavButton from "../components/navigationbutton";
 import Button from '@material-ui/core/Button';
+import Grid from "@material-ui/core/Grid";
 
 class LoginPage extends Component {
+    style = {
+        button: {
+            background: '#000000',
+            color: '#ffffff',
+            borderRadius: '0em',
+            margin: '0 2em 1em 0',
+            width: '6em',
+        }
 
+    }
     // AJAX request to fetch User info from dB
 
     // pass user info from db into updateParent function
@@ -61,13 +71,19 @@ class LoginPage extends Component {
         return (
             <Box style={{ height: '100vh' }}>
                 <LoginForm />
+                <Grid container spacing={2}>
+                    <Grid item lg={3}></Grid>
+                    <Grid item lg={6} style={{ textAlign: 'center', paddingTop: '5%' }}>
+                        {/* <Button style={this.style.button} onClick={this.updateParent}>Update</Button> */}
+                        <Button style={this.style.button} onClick={this.updateJohn}>J o h n</Button>
+                        <Button style={this.style.button} onClick={this.updateDavid}>David</Button>
+                        <Button style={this.style.button} onClick={this.updateChaney}>Chaney</Button>
+                        <Button style={this.style.button} onClick={this.updateMarshall}>Marshall</Button>
+                        
+                        <NavButton to="/messenger" text="Start Chatting!" />
+                    </Grid>
+                </Grid>
 
-                <Button onClick={this.updateParent}>Update</Button>
-                <Button onClick={this.updateJohn}>John</Button>
-                <Button onClick={this.updateDavid}>David</Button>
-                <Button onClick={this.updateChaney}>Chaney</Button>
-                <Button onClick={this.updateMarshall}>Marshall</Button>
-                <NavButton to="/messenger" text="Start Chatting!" />
             </Box>
         );
     };
