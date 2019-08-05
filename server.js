@@ -60,11 +60,14 @@ if (process.env.NODE_ENV === "development") {
 
 
 app.get("/login", function (req, res) {
-  console.log(req)
-  // db.user.find({ "userName": req.userName }, { "password": req.password })
-  //   .then(
-  //     res.json(dbuser)
-  //   )
+  console.log(req.body)
+  db.user.findOne({ "userName": req.body.userName, "password": req.body.password })
+    .then( function(dbUser) {
+      res.json(dbUser)
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
 })
 
 app.post("/login", function (req, res) {
