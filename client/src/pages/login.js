@@ -5,8 +5,6 @@ import NavButton from "../components/navigationbutton";
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 
 class LoginPage extends Component {
     style = {

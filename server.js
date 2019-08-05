@@ -4,6 +4,7 @@ const db = require("./models");
 const path = require("path");
 const socket = require("socket.io");
 const app = express();
+var userModel = require("./models/user")
 
 const { GoogleAuth } = require("google-auth-library");
 
@@ -39,13 +40,32 @@ app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+async function dbRun(MONGODB_URI, db) {
+  await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
+  await db.user.create({name: "John", userName: "SpaceSloth", nativeLanguage: "en", targetLanguage: "es", email: "evilevilmonkey@familyguy.com", password: "password1"});
+  await db.user.create({name: "David", userName: "MoldySmurf", nativeLanguage: "en", targetLanguage: "it", email:"someemail@email.com", password: "dejectedMammoth"});
+  await db.user.create({name: "Chaney", userName: "PrincessPeach", nativeLanguage:"en", targetLanguage: "fr", email: "lostemail@coolio.gov", password: "passwordNotFound"});
+  await db.user.create({name: "Marshall", userName: "MarshtheProtector", nativeLaguage: "en", targetLanguage: "ru", email: "oldemail@aol.com", password: "elderWorldDreams"});
+
+  const docs = await db.user.find()
+  console.log(docs)
+}
+
+dbRun(MONGODB_URI, db).catch(error => console.log(error.stack));
+
+  
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "development") {
   app.use(express.static("client/public"));
 }
 // Define API routes here
+
+
+app.get("/login", function(req,res) {
+  db.user.find({"userName": req.name})
+})
+
 app.post("/login", function(req, res) {
   db.user.create(req.body).then(function(dbUser) {
     console.log(dbUser);
