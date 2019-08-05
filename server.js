@@ -4,7 +4,6 @@ const db = require("./models");
 const path = require("path");
 const socket = require("socket.io");
 const app = express();
-var userModel = require("./models/user")
 
 const { GoogleAuth } = require("google-auth-library");
 
@@ -43,18 +42,16 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 async function dbRun(MONGODB_URI, db) {
   await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-  await db.user.create({name: "John", userName: "SpaceSloth", nativeLanguage: "en", targetLanguage: "es", email: "evilevilmonkey@familyguy.com", password: "password1"});
-  await db.user.create({name: "David", userName: "MoldySmurf", nativeLanguage: "en", targetLanguage: "it", email:"someemail@email.com", password: "dejectedMammoth"});
-  await db.user.create({name: "Chaney", userName: "PrincessPeach", nativeLanguage:"en", targetLanguage: "fr", email: "lostemail@coolio.gov", password: "passwordNotFound"});
-  await db.user.create({name: "Marshall", userName: "MarshtheProtector", nativeLaguage: "en", targetLanguage: "ru", email: "oldemail@aol.com", password: "elderWorldDreams"});
+  await db.user.create({ name: "John", userName: "SpaceSloth", nativeLanguage: "en", targetLanguage: "es", email: "evilevilmonkey@familyguy.com", password: "password1" });
+  await db.user.create({ name: "David", userName: "MoldySmurf", nativeLanguage: "en", targetLanguage: "it", email: "someemail@email.com", password: "dejectedMammoth" });
+  await db.user.create({ name: "Chaney", userName: "PrincessPeach", nativeLanguage: "en", targetLanguage: "fr", email: "lostemail@coolio.gov", password: "passwordNotFound" });
+  await db.user.create({ name: "Marshall", userName: "MadMarshMuldoon", nativeLaguage: "en", targetLanguage: "ru", email: "oldemail@aol.com", password: "elderWorldDreams" });
 
-  const docs = await db.user.find()
-  console.log(docs)
 }
 
 dbRun(MONGODB_URI, db).catch(error => console.log(error.stack));
 
-  
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "development") {
   app.use(express.static("client/public"));
@@ -62,30 +59,34 @@ if (process.env.NODE_ENV === "development") {
 // Define API routes here
 
 
-app.get("/login", function(req,res) {
-  db.user.find({"userName": req.name})
+app.get("/login", function (req, res) {
+  console.log(req)
+  // db.user.find({ "userName": req.userName }, { "password": req.password })
+  //   .then(
+  //     res.json(dbuser)
+  //   )
 })
 
-app.post("/login", function(req, res) {
-  db.user.create(req.body).then(function(dbUser) {
+app.post("/login", function (req, res) {
+  db.user.create(req.body).then(function (dbUser) {
     console.log(dbUser);
   });
 });
 
-app.get("/messenger", function(req, res) {
-  db.message.find(req.body).then(function(dbMessage) {
+app.get("/messenger", function (req, res) {
+  db.message.find(req.body).then(function (dbMessage) {
     console.log(dbMessage);
   });
 });
 
-app.post("/messenger", function(req, res) {
-  db.message.create(req.body).then(function(dbMessage) {
+app.post("/messenger", function (req, res) {
+  db.message.create(req.body).then(function (dbMessage) {
     console.log(dbMessage);
   });
 });
 
-app.delete("/messenger", function(req, res) {
-  db.message.deleteOne(req.body).then(function(dbMessage) {
+app.delete("/messenger", function (req, res) {
+  db.message.deleteOne(req.body).then(function (dbMessage) {
     console.log(dbMessage);
   });
 });
@@ -119,7 +120,7 @@ io.on("connection", socket => {
   clients.push(socket);
 
   // handle messages and relay to connected clients
-  socket.on("SEND_MESSAGE", function(data) {
+  socket.on("SEND_MESSAGE", function (data) {
     console.log(data); // logs message object on receit
 
     // ===== BEGIN RELAY LOOP ================================================= //
@@ -138,7 +139,7 @@ io.on("connection", socket => {
           ]);
           const url = `https://www.googleapis.com/dns/v1/projects/${
             keys.project_id
-          }`;
+            }`;
           const res = await client.request({ url });
           console.log(res.data);
         }
@@ -165,7 +166,7 @@ io.on("connection", socket => {
         client.emit("RECEIVE_MESSAGE", data); // relay message to all clients (to be deprecated)
         console.log(
           `Emitted message to ${client.user.userName} in target language: ${
-            client.user.target
+          client.user.target
           }.`
         ); // log message relays
       }
@@ -177,7 +178,7 @@ io.on("connection", socket => {
 
         data.translation = `Error occured.  Failed to translate: '${
           data.message
-        }.'`; // send error message to clients
+          }.'`; // send error message to clients
 
         client.emit("RECEIVE_MESSAGE", data); // relay error message to all clients (to be deprecated)
       });
@@ -187,7 +188,7 @@ io.on("connection", socket => {
   });
 
   // handle disconnections
-  socket.on("disconnect", function() {
+  socket.on("disconnect", function () {
     const i = clients.indexOf(socket); // get index from client array of disconnected client
     const client = clients[i]; // get disconnected client info
 

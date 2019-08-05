@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
+import Button from "@material-ui/core/Button";
+import Axios from 'axios';
 
 export default class LoginForm extends Component {
 
@@ -11,23 +13,30 @@ export default class LoginForm extends Component {
       name: "",
       password: ""
     };
-
-    this.handleNameChange = this.handleNameChange.bind(this);
-    this.handlePasswordChange = this.handlePasswordChange.bind(this);
-    this.onSubmit = this.onSubmit.bind(this);
   }
 
-  handleNameChange(event) {
+  handleNameChange = (event) => {
     this.setState({ name: event.target.value });
   }
 
-  handlePasswordChange(event) {
+  handlePasswordChange = (event) => {
     this.setState({ password: event.target.value });
   }
 
-  onSubmit(event) {
+  onSubmit = (event) => {
     alert('Username: ' + this.state.name + " Password: " + this.state.password);
     event.preventDefault();
+    Axios({
+      method: "GET",
+      url: "/login",
+      data: {
+        userName: "SpaceSloth",
+        password: "password1"
+      },
+    })
+    .then(response =>
+      console.log(response.data)
+    )
   }
 
   render() {
@@ -64,7 +73,7 @@ export default class LoginForm extends Component {
                 />
               </div>
               <br />
-              {/* <Button type="submit" variant="contained" color="primary">Submit</Button> */}
+                <Button type="submit" variant="contained" color="primary">Submit</Button>
               <br />
             </form>
             <br />
