@@ -72,7 +72,7 @@ export default class LoginForm extends Component {
           <br />
         </form>
         <br />
-        <NavButton to="/profile" text="temp Nav to profile" />
+        {/* <NavButton to="/profile" text="temp Nav to profile" /> */}
             </Grid>
             <Grid item lg={3} ></Grid>
           </Grid>

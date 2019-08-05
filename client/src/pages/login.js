@@ -6,9 +6,6 @@ import Grid from "@material-ui/core/Grid";
 import NavButton from "../components/navigationbutton";
 import Button from '@material-ui/core/Button';
 
-
-
-
 class LoginPage extends Component {
 
     // AJAX request to fetch User info from dB
