@@ -7,8 +7,6 @@ import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button"
 
 class ProfilePage extends Component {
-    
-
     state = {
         name: this.props.app.name,
         email: this.props.app.email,
@@ -19,6 +17,18 @@ class ProfilePage extends Component {
     }
     // pass in from props (app - dynamic user info would replace hardcoded info below!!!)
 
+    updateParent = () => {
+        // replace the values of each var with the response from db
+        let name = 'Mr. Database';
+        let native = 'en';
+        let target = 'ru';
+        let email = 'evilevilmonkey@familyguy.com';
+        let id = 128943;
+
+        // this fires off to update the app state as a callback
+        this.props.appStateHandler(name, target);
+        // then once state is updated we re-route to messenger page
+    }
 
     handleImgChange = (event) => {
         this.setState({ img: event.target.value });
@@ -35,7 +45,7 @@ class ProfilePage extends Component {
     render() {
         const imgStyle = {
             height: 200,
-            width:  200
+            width: 200
         };
 
         const styleButton = {
@@ -83,7 +93,8 @@ class ProfilePage extends Component {
                 <br />
                 <NavButton to="/messenger" text="Start Chatting!" />
                 <br />
-                <button onClick={this.props.appStateHandler} style={ styleButton }>Russian Agent Marshal</button>
+                <button onClick={this.updateParent}>Update</button>
+                <button onClick={this.props.appStateHandler} style={styleButton}>Russian Agent Marshal</button>
             </Box>
         );
     };
