@@ -42,10 +42,10 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 async function dbRun(MONGODB_URI, db) {
   await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 
-  await db.user.create({ name: "John", userName: "SpaceSloth", nativeLanguage: "en", targetLanguage: "es", email: "evilevilmonkey@familyguy.com", password: "password1" });
-  await db.user.create({ name: "David", userName: "MoldySmurf", nativeLanguage: "en", targetLanguage: "it", email: "someemail@email.com", password: "dejectedMammoth" });
-  await db.user.create({ name: "Chaney", userName: "PrincessPeach", nativeLanguage: "en", targetLanguage: "fr", email: "lostemail@coolio.gov", password: "passwordNotFound" });
-  await db.user.create({ name: "Marshall", userName: "MadMarshMuldoon", nativeLaguage: "en", targetLanguage: "ru", email: "oldemail@aol.com", password: "elderWorldDreams" });
+  await db.user.create({ name: "John", userName: "SpaceSloth", nativeLanguage: "en", targetLanguage: "es", email: "evilevilmonkey@familyguy.com", password: "password1", image: "https://avatars1.githubusercontent.com/u/29588459?s=460&v=4"});
+  await db.user.create({ name: "David", userName: "MoldySmurf", nativeLanguage: "en", targetLanguage: "it", email: "someemail@email.com", password: "dejectedMammoth", image: "https://thebakermama.com/wp-content/uploads/2018/08/fullsizeoutput_15a7c.jpg"});
+  await db.user.create({ name: "Chaney", userName: "PrincessPeach", nativeLanguage: "en", targetLanguage: "fr", email: "lostemail@coolio.gov", password: "passwordNotFound", image: "https://www.mariowiki.com/images/thumb/8/82/MKAGPDX_Super_Star.png/200px-MKAGPDX_Super_Star.png"});
+  await db.user.create({ name: "Marshall", userName: "MadMarshMuldoon", nativeLaguage: "en", targetLanguage: "ru", email: "oldemail@aol.com", password: "elderWorldDreams", image: "http://www.jurassicworld.com/sites/default/files/styles/double_tall_card/public/2016-10/2213_00320_tall.jpg?itok=jtOEJntn"});
 
 }
 
@@ -59,17 +59,15 @@ if (process.env.NODE_ENV === "development") {
 // Define API routes here
 
 
-app.get("/login", function (req, res) {
-  console.log(req)
-  res.send("request received")
-  // db.user.findOne({ "userName": req.body.userName, "password": req.body.password })
-  //   .then( function(dbUser) {
-  //     res.json(dbUser)
-  //   })
-  //   .catch(function(err) {
-  //     res.send(err);
-  //   })
-})
+app.post("/userLogin", function (req, res) {
+  db.user.findOne({ "userName": req.body.userName, "password": req.body.password })
+    .then( function(dbUser) {
+      res.send(dbUser)
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
+  })
 
 app.post("/login", function (req, res) {
   db.user.create(req.body).then(function (dbUser) {

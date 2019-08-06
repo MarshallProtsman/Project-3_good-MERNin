@@ -22,6 +22,9 @@ var userSchema = new Schema({
     },
     password: {
         type: Mixed,
+    },
+    image: {
+        type: Mixed,
     }
 });
 

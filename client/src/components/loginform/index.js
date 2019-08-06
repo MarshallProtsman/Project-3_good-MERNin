@@ -24,18 +24,21 @@ export default class LoginForm extends Component {
   }
 
   onSubmit = (event) => {
-    alert('Username: ' + this.state.name + " Password: " + this.state.password);
+    //alert('Username: ' + this.state.name + " Password: " + this.state.password);
     event.preventDefault();
+    console.log(`User: ${this.state.name} Password: ${this.state.password}`);
     Axios({
-      method: "GET",
-      url: "/login",
+      method: "POST",
+      url: "/userLogin",
       data: {
         userName: this.state.name,
         password: this.state.password
-      },
+      }
     })
-    .then(response =>
-      console.log(response)
+    .then(response => {
+        console.log(response.data)
+       }
+      
     )
   }
 
