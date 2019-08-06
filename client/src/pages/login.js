@@ -5,7 +5,6 @@ import NavButton from "../components/navigationbutton";
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 
-
 class LoginPage extends Component {
     style = {
         button: {
@@ -16,8 +15,7 @@ class LoginPage extends Component {
             width: '6em',
             fontSize: '1.11em'
         }
-
-    }
+    };
     // AJAX request to fetch User info from dB
 
     // pass user info from db into updateParent function
@@ -34,56 +32,16 @@ class LoginPage extends Component {
         // then once state is updated we re-route to messenger page
     };
 
-    // USER DEMOS
-    updateJohn = () => {
-        let name = 'John';
-        let native = 'en';
-        let target = 'es';
-        let email = 'evilevilmonkey@familyguy.com';
-        let id = 128922;
-        this.props.appStateHandler(name, native, target, email, id);
-    };
-    updateDavid = () => {
-        let name = 'David';
-        let native = 'en';
-        let target = 'it';
-        let email = 'evilevilmonkey@familyguy.com';
-        let id = 128942;
-        this.props.appStateHandler(name, native, target, email, id);
-    };
-    updateChaney = () => {
-        let name = 'Chaney';
-        let native = 'en';
-        let target = 'fr';
-        let email = 'evilevilmonkey@familyguy.com';
-        let id = 128945;
-        this.props.appStateHandler(name, native, target, email, id);
-    };
-    updateMarshall = () => {
-        let name = 'Marshall';
-        let native = 'en';
-        let target = 'ru';
-        let email = 'evilevilmonkey@familyguy.com';
-        let id = 128949;
-        this.props.appStateHandler(name, native, target, email, id);
-    };
-
     render() {
         console.log(this.props)
         return (
             <Box style={{ height: '100vh' }}>
-
             <br />
-                <LoginForm />
+                <LoginForm updateState={this.props.appStateHandler}/>
                 <Grid container spacing={2}>
                     <Grid item lg={3}></Grid>
                     <Grid item lg={6} sm={12} style={{ textAlign: 'center', paddingTop: '5%' }}>
-                        {/* <Button style={this.style.button} onClick={this.updateParent}>Update</Button> */}
-                        <Button style={this.style.button} onClick={this.updateJohn}>John</Button>
-                        <Button style={this.style.button} onClick={this.updateDavid}>David</Button>
-                        <Button style={this.style.button} onClick={this.updateChaney}>Chaney</Button>
-                        <Button style={this.style.button} onClick={this.updateMarshall}>Marshall</Button>
-                        
+                        <Button style={this.style.button} onClick={this.updateParent}>Demo</Button>
                         <NavButton to="/messenger" text="Start Chatting!" />
                     </Grid>
                 </Grid>

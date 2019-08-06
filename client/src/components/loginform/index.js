@@ -36,13 +36,14 @@ export default class LoginForm extends Component {
       }
     })
     .then(response => {
+      this.props.updateState(response.data.name, response.data.nativeLanguage, response.data.targetLanguage, response.data.email, response.data._id);
         console.log(response.data)
        }
-      
     )
   }
 
   render() {
+    console.log(this.props.updateState)
     return (
 
       <Container style={{ paddingTop: '10em' }}>

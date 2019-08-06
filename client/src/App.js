@@ -5,9 +5,6 @@ import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import ProfilePage from "./pages/profile";
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
 
 // testing sandbox below
 import Sandbox from "./pages/sandboxUI";
@@ -60,7 +57,8 @@ class App extends Component {
       target: target,
       email: email,
       id: id
-    })
+    });
+    console.log(this.state);
   }
 
   render() {
