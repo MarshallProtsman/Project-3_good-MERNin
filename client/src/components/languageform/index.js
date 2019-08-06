@@ -3,15 +3,14 @@ import Input from '@material-ui/core/Input';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
-import Button from '@material-ui/core/Button';
+import FormControl from "@material-ui/core/FormControl";
+import Button from "@material-ui/core/Button"
 
 
-export default function SimpleSelect() {
+export default function SimpleSelect(props) {
   const [values, setValues] = React.useState({
-    language: '',
-    name: ""
+    language: props.language,
   });
 
   function handleChange(event) {
@@ -22,18 +21,17 @@ export default function SimpleSelect() {
   }
 
   function formSubmit(event) {
-    event.preventDefault()
-    alert(values.language + " was selected!")
+    console.log(values.language)
   }
 
   return (
-    <form className="" autoComplete="off">
-
-      <FormControl className="">
-        <InputLabel htmlFor="age-helper">Your Language</InputLabel>
+    <form>
+      <FormControl>
+        <InputLabel>Your Language</InputLabel>
         <Select
           value={values.language}
           onChange={handleChange}
+          selected={props.selected}
           input={<Input name="language" id="age-helper" />}
         >
           <MenuItem value="language">
@@ -45,11 +43,9 @@ export default function SimpleSelect() {
         </Select>
         <FormHelperText>What language would you like to learn?</FormHelperText>
         <br />
-      </FormControl>
+        <Button onClick={formSubmit} variant="contained" color="primary">{props.text}</Button>
       <br />
-      <Button onClick={formSubmit} variant="contained" color="primary">
-        Submit Language Choice
-            </Button>
+      </FormControl>
     </form>
   );
 }

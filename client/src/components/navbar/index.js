@@ -2,12 +2,13 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
+import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles(theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 1
   },
   menuButton: {
     marginRight: theme.spacing(2),
@@ -23,13 +24,20 @@ export default function ButtonAppBar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
+      
         <Toolbar>
-          <Typography variant="h6" className={classes.title}>
-            Immersio
-          </Typography>
-          <Button color="inherit">Login</Button>
+          <Grid container>
+            <Grid item md={4}>
+              <Button><h1>Immersio</h1></Button>
+              
+            </Grid>
+          </Grid>
+          
+          <Button color="inherit" >Login</Button>
         </Toolbar>
       </AppBar>
+
+      
     </div>
   );
 }
