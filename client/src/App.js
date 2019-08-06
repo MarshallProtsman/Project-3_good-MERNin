@@ -1,17 +1,11 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import ButtonAppBar from "./components/navbar";
-import Box from "@material-ui/core/Box";
 import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import ProfilePage from "./pages/profile";
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
+
 
 // testing danbox below
 import Sandbox from "./pages/sandboxUI";

@@ -39,33 +39,56 @@ app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+async function dbRun(MONGODB_URI, db) {
+  await mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
+
+  await db.user.create({ name: "John", userName: "SpaceSloth", nativeLanguage: "en", targetLanguage: "es", email: "evilevilmonkey@familyguy.com", password: "password1", image: "https://avatars1.githubusercontent.com/u/29588459?s=460&v=4"});
+  await db.user.create({ name: "David", userName: "MoldySmurf", nativeLanguage: "en", targetLanguage: "it", email: "someemail@email.com", password: "dejectedMammoth", image: "https://thebakermama.com/wp-content/uploads/2018/08/fullsizeoutput_15a7c.jpg"});
+  await db.user.create({ name: "Chaney", userName: "PrincessPeach", nativeLanguage: "en", targetLanguage: "fr", email: "lostemail@coolio.gov", password: "passwordNotFound", image: "https://www.mariowiki.com/images/thumb/8/82/MKAGPDX_Super_Star.png/200px-MKAGPDX_Super_Star.png"});
+  await db.user.create({ name: "Marshall", userName: "MadMarshMuldoon", nativeLaguage: "en", targetLanguage: "ru", email: "oldemail@aol.com", password: "elderWorldDreams", image: "http://www.jurassicworld.com/sites/default/files/styles/double_tall_card/public/2016-10/2213_00320_tall.jpg?itok=jtOEJntn"});
+
+}
+
+dbRun(MONGODB_URI, db).catch(error => console.log(error.stack));
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "development") {
   app.use(express.static("client/public"));
 }
 // Define API routes here
-app.post("/login", function(req, res) {
-  db.user.create(req.body).then(function(dbUser) {
+
+
+app.post("/userLogin", function (req, res) {
+  db.user.findOne({ "userName": req.body.userName, "password": req.body.password })
+    .then( function(dbUser) {
+      res.send(dbUser)
+    })
+    .catch(function(err) {
+      res.send(err);
+    })
+  })
+
+app.post("/login", function (req, res) {
+  db.user.create(req.body).then(function (dbUser) {
     console.log(dbUser);
   });
 });
 
-app.get("/messenger", function(req, res) {
-  db.message.find(req.body).then(function(dbMessage) {
+app.get("/messenger", function (req, res) {
+  db.message.find(req.body).then(function (dbMessage) {
     console.log(dbMessage);
   });
 });
 
-app.post("/messenger", function(req, res) {
-  db.message.create(req.body).then(function(dbMessage) {
+app.post("/messenger", function (req, res) {
+  db.message.create(req.body).then(function (dbMessage) {
     console.log(dbMessage);
   });
 });
 
-app.delete("/messenger", function(req, res) {
-  db.message.deleteOne(req.body).then(function(dbMessage) {
+app.delete("/messenger", function (req, res) {
+  db.message.deleteOne(req.body).then(function (dbMessage) {
     console.log(dbMessage);
   });
 });
@@ -99,7 +122,7 @@ io.on("connection", socket => {
   clients.push(socket);
 
   // handle messages and relay to connected clients
-  socket.on("SEND_MESSAGE", function(data) {
+  socket.on("SEND_MESSAGE", function (data) {
     console.log(data); // logs message object on receit
 
     // ===== BEGIN RELAY LOOP ================================================= //
@@ -118,7 +141,7 @@ io.on("connection", socket => {
           ]);
           const url = `https://www.googleapis.com/dns/v1/projects/${
             keys.project_id
-          }`;
+            }`;
           const res = await client.request({ url });
           console.log(res.data);
         }
@@ -145,7 +168,7 @@ io.on("connection", socket => {
         client.emit("RECEIVE_MESSAGE", data); // relay message to all clients (to be deprecated)
         console.log(
           `Emitted message to ${client.user.userName} in target language: ${
-            client.user.target
+          client.user.target
           }.`
         ); // log message relays
       }
@@ -157,7 +180,7 @@ io.on("connection", socket => {
 
         data.translation = `Error occured.  Failed to translate: '${
           data.message
-        }.'`; // send error message to clients
+          }.'`; // send error message to clients
 
         client.emit("RECEIVE_MESSAGE", data); // relay error message to all clients (to be deprecated)
       });
@@ -167,7 +190,7 @@ io.on("connection", socket => {
   });
 
   // handle disconnections
-  socket.on("disconnect", function() {
+  socket.on("disconnect", function () {
     const i = clients.indexOf(socket); // get index from client array of disconnected client
     const client = clients[i]; // get disconnected client info
 
