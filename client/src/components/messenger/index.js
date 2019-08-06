@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import io from 'socket.io-client';
 import Box from '@material-ui/core/Box';
+import Grid from "@material-ui/core/Grid";
+import Container from "@material-ui/core/Container";
 
 class Chat extends Component {
     constructor(props) {
@@ -32,6 +34,7 @@ class Chat extends Component {
         };
 
         // pass the user profile to server to add to socket/client instance
+      
         // for deploying
 
         // this.socket = io({ query: this.user }, function () {
@@ -43,7 +46,13 @@ class Chat extends Component {
 
         this.socket = io('localhost:5000', { query: this.user }, function () {
             console.log(io)
+
         });
+        
+        // pass the user profile to server to add to socket/client instance
+        // this.socket = io('localhost:3000' || 'localhost:5000/', { query: this.user }, function () {
+        //     console.log(io)
+        // });
 
         // on message receipt from server - add to state thru the addMessage call
         this.socket.on('RECEIVE_MESSAGE', function (data) {
@@ -80,7 +89,6 @@ class Chat extends Component {
             };
         };
         
-
         // send message on 'Enter' key press
         this.keyPress = ev => {
             // console.log(ev.key); 
@@ -135,7 +143,6 @@ class Chat extends Component {
                 position: 'absolute',
                 bottom: '9em',
                 width: '100%',
-                background: 'cyan',
                 left: 0,
                 margin: 'auto'
             },
@@ -165,7 +172,7 @@ class Chat extends Component {
                 <p>Chat Profile Pics Here</p>
                 <div className="Messages" style={style.Messages}>
                     {this.state.messageList.map(message => {
-                        console.log(message.user.id)
+                        console.log(message.user.id);
                         let msgStyle = {};
                         if (message.user.id === this.user.id) {
                             msgStyle = style.msgUser;

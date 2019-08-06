@@ -5,8 +5,8 @@ var Schema = mongoose.Schema;
 var Mixed = mongoose.Schema.Types.Mixed;
 
 var userSchema = new Schema({
-    userId: {
-        type: Number,
+    name: {
+        type: String,
     },
     userName: {
         type: String,
@@ -21,6 +21,9 @@ var userSchema = new Schema({
         type: Mixed,
     },
     password: {
+        type: Mixed,
+    },
+    image: {
         type: Mixed,
     }
 });
