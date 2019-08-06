@@ -5,8 +5,6 @@ import NavButton from "../components/navigationbutton";
 import Button from '@material-ui/core/Button';
 import Grid from "@material-ui/core/Grid";
 
-import { createMuiTheme } from '@material-ui/core/styles';
-import { ThemeProvider } from '@material-ui/styles';
 
 class LoginPage extends Component {
     style = {
@@ -74,6 +72,8 @@ class LoginPage extends Component {
         console.log(this.props)
         return (
             <Box style={{ height: '100vh' }}>
+
+            <br />
                 <LoginForm />
                 <Grid container spacing={2}>
                     <Grid item lg={3}></Grid>

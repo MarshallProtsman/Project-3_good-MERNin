@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import Container from "@material-ui/core/Container";
 import ButtonAppBar from "./components/navbar";
-import Box from "@material-ui/core/Box";
 import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
