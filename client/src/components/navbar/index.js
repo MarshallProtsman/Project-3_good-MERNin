@@ -6,9 +6,6 @@ import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
 import Icon from '@material-ui/core/Icon';
 
-
-
-
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
@@ -26,16 +23,17 @@ export default function ButtonAppBar(props) {
 
   return (
     <div className={classes.root}>
-      <AppBar position="fixed">
+      <AppBar position="static">
       
         <Toolbar>
           <Grid container>
             <Grid item md={4}>
-              <h1>Immersio</h1>
+              <Button><h1>Immersio</h1></Button>
+              
             </Grid>
           </Grid>
           
-          <Button color="inherit"><Icon>menu</Icon></Button>
+          <Button color="inherit" >Login</Button>
         </Toolbar>
       </AppBar>
 

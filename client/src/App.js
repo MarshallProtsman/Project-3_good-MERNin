@@ -5,9 +5,11 @@ import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import ProfilePage from "./pages/profile";
+import { makeStyles } from '@material-ui/core/styles';
+import Drawer from '@material-ui/core/Drawer';
+import Button from '@material-ui/core/Button';
 
-
-// testing danbox below
+// testing sandbox below
 import Sandbox from "./pages/sandboxUI";
 import "./App.css";
 
@@ -17,7 +19,7 @@ import green from '@material-ui/core/colors/green';
 
 import Fade from 'react-reveal/Fade';
 
-const font = 'Playfair Display';
+const font = 'Montserrat';
 
 const theme = createMuiTheme({
   palette: {
@@ -66,6 +68,7 @@ class App extends Component {
       <ThemeProvider theme={theme} className="App">
         <Fade clear delay={2400}>
           <ButtonAppBar />
+         
         </Fade>
 
         <Router>
