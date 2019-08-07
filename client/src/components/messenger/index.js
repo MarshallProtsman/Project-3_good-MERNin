@@ -44,14 +44,12 @@ class Chat extends Component {
         // pass the user profile to server to add to socket/client instance
         // for local
 
-        // this.socket = io('https://good-mernin.herokuapp.com/', { query: this.user }, function () {
-        //     console.log(io)
-
-        // });
-        this.socket = io('localhost:5000', { query: this.user }, function () {
+        this.socket = io('https://good-mernin.herokuapp.com/', { query: this.user }, function () {
             console.log(io)
-
         });
+        // this.socket = io('localhost:5000', { query: this.user }, function () {
+        //     console.log(io)
+        // });
         
         // pass the user profile to server to add to socket/client instance
         // this.socket = io('localhost:3000' || 'localhost:5000/', { query: this.user }, function () {
