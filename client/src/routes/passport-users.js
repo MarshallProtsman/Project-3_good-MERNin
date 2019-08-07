@@ -15,13 +15,13 @@ router.get('/register', (req, res) => res.render('Register'))
 
 //Register Handle
 router.post('/register', (req, res) => {
-    let { name, email, password, password2 } = req.body;
+    let { firstName, lastName, email, password, password2 } = req.body;
     let errors = [];
     
     email = email.toLowerCase();
 
     //Check required fields
-    if(!name || !email || !password || !password2) {
+    if(!firstName || !lastName || !email || !password || !password2) {
         errors.push({ msg: 'Please fill in all fields' });
         alert('Please fill in all fields');
     }
@@ -48,7 +48,7 @@ router.post('/register', (req, res) => {
         });
     } else {
         //Validation passed
-        User.findOne({ email: email})
+        user.findOne({ email: email})
             .then(user => {
                 if(user) {
                 //User exists
@@ -63,7 +63,8 @@ router.post('/register', (req, res) => {
                 });
             } else {
                 let newUser = new User({
-                    name,
+                    firstName,
+                    lastName,
                     email,
                     password
                 });
@@ -91,7 +92,7 @@ router.post('/register', (req, res) => {
 //Login Handle
 router.post('/login', (req, res, next) => {
     passport.authenticate('local', {
-        successRedirect: '/dashboard',
+        successRedirect: '/profile',
         failureRedirect: '/users/login',
         failureFlash: true
     })(req, res, next);

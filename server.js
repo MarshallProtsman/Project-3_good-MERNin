@@ -1,6 +1,6 @@
 const express = require("express");
-var mongoose = require("mongoose");
-var db = require("./models");
+const mongoose = require("mongoose");
+const db = require("./models");
 const path = require("path");
 const socket = require('socket.io');
 const flash = require('connect-flash');
@@ -46,7 +46,7 @@ app.use(flash());
 app.use((req, res, next) => {
     res.locals.success_msg = req.flash('success_msg');
     res.locals.error_msg = req.flash('err_msg');
-    es.locals.error = req.flash('error');
+    res.locals.error = req.flash('error');
     next();
 });
 
@@ -57,7 +57,7 @@ app.use('/users', require('./client/src/routes/passport-users.js'))
 
 
 // Define API routes here
-app.post("/login", function(req,res) {
+app.post("/register", function(req,res) {
   db.user.create(req.body)
   .then(function(dbUser) {
     console.log(dbUser);
@@ -91,7 +91,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-server = app.listen(PORT, () => console.log('server is running on port 5000'));
+server = app.listen(PORT, () => console.log('server is running on port ' + PORT));
 
 // ===== BEGIN SOCKET.IO ================================================== //
 io = socket(server); // Socket.io initalize after server loads - mounts on same connection/PORT
