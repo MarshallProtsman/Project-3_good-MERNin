@@ -51,14 +51,11 @@ async function dbRun(MONGODB_URI, db) {
 
 dbRun(MONGODB_URI, db).catch(error => console.log(error.stack));
 
-
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "development") {
   app.use(express.static("client/public"));
 }
-// Define API routes here
-
-
+// Routes
 app.post("/userLogin", function (req, res) {
   db.user.findOne({ "userName": req.body.userName, "password": req.body.password })
     .then( function(dbUser) {
