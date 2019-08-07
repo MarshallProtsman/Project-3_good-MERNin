@@ -1,7 +1,7 @@
 echo "Updating Build info JSON"
 
 #cd build
-rm gen-creds.json
+#rm gen-creds.json
 touch gen-creds.json
 
 echo '{' >> gen-creds.json
