@@ -99,6 +99,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
+console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 const server = app.listen(PORT, () =>
   console.log(`server is running on port ${PORT}`)
 );
@@ -130,24 +131,24 @@ io.on("connection", socket => {
       // ===== BEGIN GOOGLE TRANSLATE API CALL  ================================= //
       async function main(projectId = process.env.GOOGLE_CLOUD_PROJECT_ID) {
 
-        //Begin
-        const { JWT } = require("google-auth-library");
-        const keys = require("../../GCP/googlecreds.json");
-        // const keys = require('./jwt.keys.json');
+      //   //Begin
+      //   const { JWT } = require("google-auth-library");
+      //   const keys = require("../../GCP/googlecreds.json");
+      //   // const keys = require('./jwt.keys.json');
 
-        async function main() {
-          const client = new JWT(keys.client_email, null, keys.private_key, [
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]);
-          const url = `https://www.googleapis.com/dns/v1/projects/${
-            keys.project_id
-            }`;
-          const res = await client.request({ url });
-          console.log(res.data);
-        }
+      //   async function main() {
+      //     const client = new JWT(keys.client_email, null, keys.private_key, [
+      //       "https://www.googleapis.com/auth/cloud-platform"
+      //     ]);
+      //     const url = `https://www.googleapis.com/dns/v1/projects/${
+      //       keys.project_id
+      //       }`;
+      //     const res = await client.request({ url });
+      //     console.log(res.data);
+      //   }
 
-        main().catch(console.error);
-        //END
+      //   main().catch(console.error);
+      //   //END
 
         // Imports the Google Cloud client library
         const { Translate } = require("@google-cloud/translate");
