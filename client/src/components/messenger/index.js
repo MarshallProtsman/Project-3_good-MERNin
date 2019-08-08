@@ -155,7 +155,7 @@ class Chat extends Component {
             msgBodyUser: {
                 background: '#ffffff',
                 maxWidth: '60%',
-                borderRadius: '15em',
+                borderRadius: '1.33em',
                 textTransform: 'none',
                 fontSize: '1.1em',
                 padding: '0 0.66em 0 0.66em',
@@ -164,7 +164,7 @@ class Chat extends Component {
             msgBodyFriend: {
                 background: '#DB504A',
                 maxWidth: '60%',
-                borderRadius: '15em',
+                borderRadius: '1.33em',
                 color: '#ffffff',
                 textTransform: 'none',
                 fontSize: '1.1em',
