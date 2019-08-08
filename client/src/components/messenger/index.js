@@ -21,11 +21,6 @@ class Chat extends Component {
             img: this.props.user.img
         };
 
-        console.log(this.name);
-        console.log(this.email);
-
-        // testing for commit
-
         // state only needs to be maintained for the chat input and messages list
         this.state = {
             message: '',
@@ -37,15 +32,7 @@ class Chat extends Component {
        this.socket = io( { query: this.user }, function () {
        console.log(io)
         });
-        // this.socket = io('localhost:5000', { query: this.user }, function () {
-        //     console.log(io)
-        // });
-        
-        // pass the user profile to server to add to socket/client instance
-        // this.socket = io('localhost:3000' || 'localhost:5000/', { query: this.user }, function () {
-        //     console.log(io)
-        // });
-
+    
         // on message receipt from server - add to state thru the addMessage call
         this.socket.on('RECEIVE_MESSAGE', function (data) {
             addMessage(data); // pushes to messages array
@@ -129,23 +116,29 @@ class Chat extends Component {
 
             Messages: {
                 paddingRight: 1.33 + 'em',
-                // minHeight: 1 + 'em',
+                minHeight: 1 + 'em',
                 margin: 0.33 + 'em',
                 position: 'absolute',
                 bottom: '11em',
                 width: '100%',
                 left: 0,
                 margin: 'auto',
-                height: '1em'
+                maxHeight: '60%',
+                overflow: 'scroll'
             },
 
             msgUser: {
                 opacity: 0.66,
-                textAlign: 'right'
+                textAlign: 'right',
+                margin: '0.33em 1em 0 1em'
+                
+                // width: '60%'
             },
 
             msgFriend: {
-                textAlign: 'left'
+                textAlign: 'left',
+                margin: '0.33em 1em 0 1em'
+                // width: '60%'
             },
 
             ChatContainer: {
@@ -156,26 +149,46 @@ class Chat extends Component {
                 left: 0,
                 bottom: 2 + 'em',
                 paddingTop: '2em'
+            },
+            msgBodyUser: {
+                background: '#ffffff',
+                maxWidth: '60%',
+                borderRadius: '15em',
+                textTransform: 'none',
+                fontSize: '1.22em'
+            },
+            msgBodyFriend: {
+                background: '#DB504A',
+                maxWidth: '60%',
+                borderRadius: '15em',
+                color: '#ffffff',
+                textTransform: 'none',
+                fontSize: '1.22em'
             }
         }
 
         return (
             <div style={style.Body}>
-                <p>Chat Profile Pics Here</p>
+                {/* <p>Chat Profile Pics Here</p> */}
                 <div className="Messages" style={style.Messages}>
                     {this.state.messageList.map(message => {
-                        console.log(message.user.id);
+
                         let msgStyle = {};
+                        let msgBody = {};
+
                         if (message.user.id === this.user.id) {
                             msgStyle = style.msgUser;
+                            msgBody = style.msgBodyUser;
+                            console.log('user')
                         } else {
                             msgStyle = style.msgFriend;
+                            msgBody = style.msgBodyFriend;
                         }
                         return (
                             <Box>
                                 <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
-                                <Button onClick={this.toggleMessage} id={message.key}>
-                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.message}</p>) }
+                                <Button onClick={this.toggleMessage} id={message.key} style={msgBody}>
+                                    {this.state.isHidden ? (<span>{message.user.name} : {message.translation}</span>) : (<span> {message.user.name} : {message.message}</span>) }
                                     </Button>
                                 </div>
                             </Box>
