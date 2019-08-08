@@ -29,3 +29,6 @@ node_modules
 
 .env
 config.json
+
+#gen-creds.sh
+gen-creds.json

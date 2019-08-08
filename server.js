@@ -23,10 +23,10 @@ async function main() {
 }
 
 main().catch(console.error);
-
 //END GCP CREDS
 
-require("dotenv").config(); // loading .env and config variables
+// loading .env and config variables
+require("dotenv").config(); 
 
 const PORT = process.env.PORT || 5000;
 
@@ -35,7 +35,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // serve static assets
-app.use(express.static("public"));
+app.use('/static', express.static(path.join(__dirname, 'client/build')));
+// app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 
@@ -96,6 +97,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/public/index.html"));
 });
 
+console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);
 const server = app.listen(PORT, () =>
   console.log(`server is running on port ${PORT}`)
 );
@@ -126,25 +128,6 @@ io.on("connection", socket => {
     clients.forEach(client => {
       // ===== BEGIN GOOGLE TRANSLATE API CALL  ================================= //
       async function main(projectId = process.env.GOOGLE_CLOUD_PROJECT_ID) {
-
-        //Begin
-        // const { JWT } = require("google-auth-library");
-        // const keys = require("../../GCP/googlecreds.json");
-        // // const keys = require('./jwt.keys.json');
-
-        // async function main() {
-        //   const client = new JWT(keys.client_email, null, keys.private_key, [
-        //     "https://www.googleapis.com/auth/cloud-platform"
-        //   ]);
-        //   const url = `https://www.googleapis.com/dns/v1/projects/${
-        //     keys.project_id
-        //     }`;
-        //   const res = await client.request({ url });
-        //   console.log(res.data);
-        // }
-
-        // main().catch(console.error);
-        //END
 
         // Imports the Google Cloud client library
         const { Translate } = require("@google-cloud/translate");
@@ -200,20 +183,3 @@ io.on("connection", socket => {
 });
 // ===== END SOCKET.IO ==================================================== //
 
-// const {JWT} = require('google-auth-library');
-// const keys = require('../../GCP/ExploratoryProject1-a429df58be31.json');
-// // const keys = require('./jwt.keys.json');
-
-// async function main() {
-//   const client = new JWT(
-//     keys.client_email,
-//     null,
-//     keys.private_key,
-//     ['https://www.googleapis.com/auth/cloud-platform'],
-//   );
-//   const url = `https://www.googleapis.com/dns/v1/projects/${keys.project_id}`;
-//   const res = await client.request({url});
-//   console.log(res.data);
-// }
-
-// main().catch(console.error);

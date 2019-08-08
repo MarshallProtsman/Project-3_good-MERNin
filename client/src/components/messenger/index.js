@@ -37,6 +37,9 @@ class Chat extends Component {
        this.socket = io( { query: this.user }, function () {
        console.log(io)
         });
+        // this.socket = io('localhost:5000', { query: this.user }, function () {
+        //     console.log(io)
+        // });
         
         // pass the user profile to server to add to socket/client instance
         // this.socket = io('localhost:3000' || 'localhost:5000/', { query: this.user }, function () {
@@ -88,8 +91,10 @@ class Chat extends Component {
 
     toggleMessage = () => {
         const {isHidden} = this.state
-            console.log(`message clicked`);
-            this.setState({
+
+        console.log(`message clicked key:`)
+
+        this.setState({
                 isHidden: !isHidden
               })
             };
@@ -169,9 +174,9 @@ class Chat extends Component {
                         return (
                             <Box>
                                 <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
-                                <Button onClick={this.toggleMessage} key={message.key}>
-                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.key} {message.message}</p>) }
-                                </Button>
+                                <Button onClick={this.toggleMessage} id={message.key}>
+                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.message}</p>) }
+                                    </Button>
                                 </div>
                             </Box>
                         )
