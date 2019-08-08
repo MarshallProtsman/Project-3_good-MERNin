@@ -105,7 +105,7 @@ class Sandbox extends Component {
 
                 <Grid container spacing={3} style={style.sectionTwo}>
                     <Grid item md={2}></Grid>
-                    <Grid item md={6} style={{ padding: '4em' }}>
+                    <Grid item md={8} style={{ padding: '4em' }}>
 
                         <Fade clear >
                             <h1>Welcome to Immersio.</h1>
@@ -140,7 +140,7 @@ class Sandbox extends Component {
                 <div style={style.sectionThree} >
                     <Grid container spacing={6} style={{ marginTop: '4em' }}>
                         <Grid item md={2} xs={1}></Grid>
-                        <Grid item md={5} xs={10}>
+                        <Grid item md={8} xs={10}>
                             <Fade clear >
                                 <h1>About the App</h1>
                                 <Typography style={{ fontSize: '1.11em' }}>
