@@ -29,7 +29,7 @@ class Sandbox extends Component {
                 paddingTop: '16%'
             },
             sectionTwo: {
-                marginTop: '10em',
+                marginTop: '2em',
                 // background: '#000000'
             },
             textBig: {
@@ -131,14 +131,14 @@ class Sandbox extends Component {
                 </Grid>
 
                 {/* fullwidth image */}
-                <div style={{ marginTop: '10em' }}>
+                <div style={{ marginTop: '4em' }}>
                     <Fade clear>
                         <img src={person1} alt="#"></img>
                     </Fade>
                 </div>
 
                 <div style={style.sectionThree} >
-                    <Grid container spacing={6} style={{ marginTop: '10em' }}>
+                    <Grid container spacing={6} style={{ marginTop: '4em' }}>
                         <Grid item md={2} xs={1}></Grid>
                         <Grid item md={5} xs={10}>
                             <Fade clear >
