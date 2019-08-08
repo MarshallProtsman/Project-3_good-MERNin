@@ -6,19 +6,18 @@ import { Typography } from '@material-ui/core';
 import BlockRevealAnimation from 'react-block-reveal-animation';
 import { Link } from 'react-router-dom';  
 import Fade from 'react-reveal/Fade';
-
+import thisImage from '../images/person1.jpg'
+import mainImage from "../images/lady.jpg"
 class Sandbox extends Component {
 
     render() {
-
-        const imgURL = process.env.PUBLIC_URL + 'lady.jpg';
-        const person1 = process.env.PUBLIC_URL + 'person1.jpg';
+        // const person1 = process.env.PUBLIC_URL + 'person1.jpg';
         const style = {
             page: {
                 paddingTop: '6em'
             },
             sectionOne: {
-                backgroundImage: 'url(' + imgURL + ')',
+                backgroundImage: 'url(' + mainImage + ')',
                 backgroundSize: '800px',
                 backgroundRepeat: 'no-repeat',
                 // backgroundPosition: 'bottom',
@@ -132,7 +131,7 @@ class Sandbox extends Component {
                 {/* fullwidth image */}
                 <div style={{ marginTop: '4em' }}>
                     <Fade clear>
-                        <img src={person1} alt="#"></img>
+                        <img src={thisImage} alt="#"></img>
                     </Fade>
                 </div>
 

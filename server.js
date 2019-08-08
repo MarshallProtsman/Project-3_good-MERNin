@@ -36,7 +36,7 @@ app.use(express.json());
 
 // serve static assets
 app.use('/static', express.static(path.join(__dirname, 'client/build/static')));
-// app.use(express.static("public"));
+ //app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
 
