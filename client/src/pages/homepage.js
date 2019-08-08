@@ -11,8 +11,8 @@ class Sandbox extends Component {
 
     render() {
 
-        const imgURL = 'client/public/lady.jpg';
-        const person1 = 'client/public/person1.jpg';
+        const imgURL = process.env.PUBLIC_URL + 'lady.jpg';
+        const person1 = process.env.PUBLIC_URL + 'person1.jpg';
         const style = {
             page: {
                 paddingTop: '6em'
