@@ -6,7 +6,7 @@
     "node": "11.14.0"
   },
   "private": true,
-  "proxy": "http://localhost:3001/",
+  "proxy": "http://localhost:5000/",
   "main": "server.js",
   "scripts": {
     "preinstall": "sh gen-creds.sh",

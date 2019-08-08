@@ -20,10 +20,10 @@ class ProfilePage extends Component {
     updateParent = () => {
         // replace the values of each var with the response from db
         let name = 'Mr. Database';
-        let native = 'en';
+        // let native = 'en';
         let target = 'ru';
-        let email = 'evilevilmonkey@familyguy.com';
-        let id = 128943;
+        // let email = 'evilevilmonkey@familyguy.com';
+        // let id = 128943;
 
         // this fires off to update the app state as a callback
         this.props.appStateHandler(name, target);
