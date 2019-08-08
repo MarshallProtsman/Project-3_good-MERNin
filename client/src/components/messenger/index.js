@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import io from 'socket.io-client';
 import Box from '@material-ui/core/Box';
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 
 class Chat extends Component {
     constructor(props) {
@@ -40,6 +38,9 @@ class Chat extends Component {
         // this.socket = io('localhost:5000', { query: this.user }, function () {
         //     console.log(io)
         // });
+        this.socket = io('localhost:5000', { query: this.user }, function () {
+            console.log(io)
+        });
         
         // pass the user profile to server to add to socket/client instance
         // this.socket = io('localhost:3000' || 'localhost:5000/', { query: this.user }, function () {
