@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import io from 'socket.io-client';
 import Box from '@material-ui/core/Box';
+import Fade from 'react-reveal/Fade';
 
 class Chat extends Component {
     constructor(props) {
@@ -156,8 +157,9 @@ class Chat extends Component {
                 maxWidth: '60%',
                 borderRadius: '15em',
                 textTransform: 'none',
-                fontSize: '1.22em',
-                padding: '0 0.66em 0 0.66em'
+                fontSize: '1.1em',
+                padding: '0 0.66em 0 0.66em',
+                textAlign: 'left'
             },
             msgBodyFriend: {
                 background: '#DB504A',
@@ -165,7 +167,8 @@ class Chat extends Component {
                 borderRadius: '15em',
                 color: '#ffffff',
                 textTransform: 'none',
-                fontSize: '1.22em'
+                fontSize: '1.1em',
+                padding: '0 0.66em 0 0.66em',
             }
         }
 
@@ -188,11 +191,13 @@ class Chat extends Component {
                         }
                         return (
                             <Box>
+                            <Fade clear>
                                 <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
                                 <Button onClick={this.toggleMessage} id={message.key} style={msgBody}>
                                     {this.state.isHidden ? (<span>{message.user.name} : {message.translation}</span>) : (<span> {message.user.name} : {message.message}</span>) }
                                     </Button>
                                 </div>
+                                </Fade>
                             </Box>
                         )
                     })

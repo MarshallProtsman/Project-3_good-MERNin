@@ -4,6 +4,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
+import { Link } from 'react-router-dom';  
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,7 +27,7 @@ export default function ButtonAppBar(props) {
         <Toolbar>
           <Grid container>
             <Grid item md={4}>
-              <Button><h1>Immersio</h1></Button>
+              <Button style={{textTransform: 'none'}}><h1>Immersio</h1></Button>
             </Grid>
           </Grid>
           <Button color="inherit" >Login</Button>

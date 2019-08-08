@@ -61,9 +61,8 @@ class Sandbox extends Component {
                 backgroundColor: '#000000',
                 color: '#ffffff',
                 textAlign: 'center',
-                height: '70vh',
-                paddingTop: '12%'
-                
+                height: '10vh',
+                paddingTop: '2%'
             }
         }
 
@@ -123,7 +122,7 @@ class Sandbox extends Component {
                         <Fade up>
                             <Typography>
                                 <Link to="/login"> <button type="button" style={style.button} >
-                                    <h3>L O G I N</h3>
+                                    <h3>LOGIN</h3>
                                 </button>
                                 </Link>
                             </Typography>
@@ -140,14 +139,14 @@ class Sandbox extends Component {
 
                 <div style={style.sectionThree} >
                     <Grid container spacing={6} style={{ marginTop: '10em' }}>
-                        <Grid item md={2}></Grid>
-                        <Grid item md={5}>
+                        <Grid item md={2} xs={1}></Grid>
+                        <Grid item md={5} xs={10}>
                             <Fade clear >
                                 <h1>About the App</h1>
                                 <Typography style={{ fontSize: '1.11em' }}>
                                     <p>Immersio is built with the MERN stack.</p>
-                                    <p>The backend leverages Node and Express to serve assets.</p>
-                                    <p>The frontend is powered by React.</p>
+                                    <p>The backend leverages Node and Express to serve resources and handle routing.  Data persistence is accomplished through MongoDB and Mongoose.</p>
+                                    <p>The frontend is powered by React and Material UI.</p>
                                     <p>Instant messaging is a Socket.io implementation that leverages Google Translation Cloud API.</p>
                                 </Typography>
                             </Fade>
@@ -157,15 +156,17 @@ class Sandbox extends Component {
                 </div>
 
                 <div style={style.sectionFour}>
-                    <Grid container spacing={6}  >
-                        <Grid item md={2}></Grid>
-                        <Grid item md={8}>
+                    <Grid container spacing={6} >
+                        <Grid item md={2} xs={1}></Grid>
+                        <Grid item md={8} xs={10}>
                             <Fade clear >
-                            
-                            
-                                <h1>Meet the Team</h1>
+                                <p>Copyright 2019.  Chaney Durham, David Wilson, John Robertson, and Marshal Protsman</p>
                                 <Typography style={{ fontSize: '1.11em' }}>
-                                   <h3>The developers that make it happen.</h3>
+                                   {/* <h3>The developers that make it happen.</h3>
+                                  <a href='#'><h4>Chaney Durham</h4></a>
+                                  <a href='#'><h4>David Wilson</h4></a>
+                                  <a href='#'><h4>John Robertson</h4></a>
+                                  <a href='#'><h4>Marshall Protsman</h4></a> */}
                                 </Typography>
                             </Fade>
                         </Grid>
