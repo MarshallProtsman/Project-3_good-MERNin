@@ -34,18 +34,8 @@ class Chat extends Component {
         };
 
         // pass the user profile to server to add to socket/client instance
-      
-        // for deploying
-
-        // this.socket = io({ query: this.user }, function () {
-        //     console.log(io)
-        // });
-
-        // pass the user profile to server to add to socket/client instance
-        // for local
-
-        this.socket = io('https://good-mernin.herokuapp.com/', { query: this.user }, function () {
-            console.log(io)
+       this.socket = io( { query: this.user }, function () {
+       console.log(io)
         });
         // this.socket = io('localhost:5000', { query: this.user }, function () {
         //     console.log(io)
@@ -62,12 +52,11 @@ class Chat extends Component {
             console.log(data); // log message from server
         });
 
-        
         // add message to thread (state array) on receipt from server (translated)
         const addMessage = data => {
             data.key = this.state.messageList.length; // adds key to message based on messages array length
             this.setState({ messageList: [...this.state.messageList, data] });
-        }
+        };
 
         // send message to server for translation and relay
         this.sendMessage = ev => {
@@ -96,9 +85,9 @@ class Chat extends Component {
             // console.log(ev.key); 
             if (ev.key === 'Enter') {
                 this.sendMessage(ev);
-            }
+            };
         };
-    }
+    };
 
     toggleMessage = () => {
         const {isHidden} = this.state
@@ -130,23 +119,24 @@ class Chat extends Component {
 
             Button: {
                 width: 4 + 'em',
-                fontSize: 0.88 + 'em',
+                fontSize: 1 + 'em',
                 marginTop: 1 + 'em',
                 color: 'white',
                 background: 'orangered',
                 padding: 0.22 + 'em',
-                border: 'none'
+                // border: 'none'
             },
 
             Messages: {
                 paddingRight: 1.33 + 'em',
-                minHeight: 1 + 'em',
+                // minHeight: 1 + 'em',
                 margin: 0.33 + 'em',
                 position: 'absolute',
-                bottom: '9em',
+                bottom: '11em',
                 width: '100%',
                 left: 0,
-                margin: 'auto'
+                margin: 'auto',
+                height: '1em'
             },
 
             msgUser: {
@@ -160,7 +150,7 @@ class Chat extends Component {
 
             ChatContainer: {
                 position: 'absolute',
-                width: 100 + '%',
+                width: '100%',
                 margin: 'auto',
                 borderTop: '2px solid lightgrey',
                 left: 0,
@@ -184,9 +174,9 @@ class Chat extends Component {
                         return (
                             <Box>
                                 <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
-                                <Button onClick={this.toggleMessage} id={message.key}> Translate
-                                </Button>
-                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.key} {message.message}</p>) }
+                                <Button onClick={this.toggleMessage} id={message.key}>
+                                    {this.state.isHidden ? (<p>{message.user.name} : {message.translation}</p>) : (<p> {message.user.name} : {message.message}</p>) }
+                                    </Button>
                                 </div>
                             </Box>
                         )
@@ -195,8 +185,7 @@ class Chat extends Component {
                 </div>
 
                 <div className="ChatContainer" style={style.ChatContainer}>
-                    <input id="messageInput" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} onKeyPress={this.keyPress} type="text" placeholder="Message" className="form-control" style={style.Input} />
-                    <br />
+                <input id="messageInput" value={this.state.message} onChange={ev => this.setState({ message: ev.target.value })} onKeyPress={this.keyPress} type="text" placeholder="Message" className="form-control" style={style.Input} />
                     <button onClick={this.sendMessage} className="btn btn-primary form-control" style={style.Button}>SEND</button>
                 </div>
             </div>

@@ -4,15 +4,22 @@ import Grid from "@material-ui/core/Grid";
 import Container from "@material-ui/core/Container";
 import Button from "@material-ui/core/Button";
 import Axios from 'axios';
+import { Redirect } from 'react-router-dom';
 
-export default class LoginForm extends Component {
-
+class LoginForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
       name: "",
-      password: ""
+      password: "",
+      redirect: false
     };
+  }
+
+  renderRedirect = () => {
+    if(this.state.redirect) {
+      return <Redirect to= '/messenger' />
+    }
   }
 
   handleNameChange = (event) => {
@@ -35,19 +42,35 @@ export default class LoginForm extends Component {
         password: this.state.password
       }
     })
-    .then(response => {
-        console.log(response.data)
-       }
-      
-    )
+      .then(response => {
+        if (response.data.name === undefined) {
+          this.setState({
+            name: 'Invalid User',
+            password: ''
+          });
+          console.log(this.state)
+        } else {
+          this.props.updateState(response.data.name, response.data.nativeLanguage, response.data.targetLanguage, response.data.email, response.data._id);
+          console.log(response);
+          this.setState({
+            redirect: true
+          })
+          this.renderRedirect();
+        }
+      }
+      )
   }
 
   render() {
+    console.log(this.props.updateState)
     return (
 
       <Container style={{ paddingTop: '10em' }}>
+      {this.renderRedirect()}
+      
         <Grid container spacing={6}>
           <Grid item lg={3} sm={3} ></Grid>
+          
           <Grid item lg={6} sm={6} xs={12} >
             <form className="" onSubmit={this.onSubmit}>
               <div>
@@ -74,17 +97,22 @@ export default class LoginForm extends Component {
                   value={this.state.password}
                   onChange={this.handlePasswordChange}
                 />
+                
               </div>
               <br />
-                <Button type="submit" variant="contained" color="primary">Submit</Button>
+              <Button type="submit" variant="contained" color="primary">Login</Button>
               <br />
             </form>
             <br />
-            {/* <NavButton to="/profile" text="temp Nav to profile" /> */}
           </Grid>
+          
           <Grid item lg={3} ></Grid>
         </Grid>
+        
       </Container>
-    )
+      
+    );
   };
 }
+
+export default LoginForm

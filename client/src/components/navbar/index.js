@@ -4,7 +4,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Grid from '@material-ui/core/Grid';
-import Icon from '@material-ui/core/Icon';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -24,20 +23,15 @@ export default function ButtonAppBar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-      
         <Toolbar>
           <Grid container>
             <Grid item md={4}>
               <Button><h1>Immersio</h1></Button>
-              
             </Grid>
           </Grid>
-          
           <Button color="inherit" >Login</Button>
         </Toolbar>
       </AppBar>
-
-      
     </div>
   );
 }

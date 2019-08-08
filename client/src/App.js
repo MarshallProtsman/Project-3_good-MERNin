@@ -5,17 +5,9 @@ import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
 import ProfilePage from "./pages/profile";
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import Button from '@material-ui/core/Button';
-
-// testing sandbox below
-import Sandbox from "./pages/sandboxUI";
 import "./App.css";
-
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
-import green from '@material-ui/core/colors/green';
 
 import Fade from 'react-reveal/Fade';
 
@@ -25,8 +17,7 @@ const theme = createMuiTheme({
   palette: {
     primary: {
       main: 'rgba(255,255,255, 0)'
-    },
-    secondary: green,
+    }
   },
   status: {
     danger: 'orange',
@@ -40,10 +31,9 @@ const theme = createMuiTheme({
 class App extends Component {
   constructor() {
     super(); // needed for this keyword
-
-    // state is the user at within app state 
+    // maintain user in app state to access in all components
     this.state = {
-      name: 'Bert',
+      name: 'Demo',
       email: 'jrobertson@gmail.com',
       id: 1222022,
       native: 'en',
@@ -52,7 +42,7 @@ class App extends Component {
     };
   };
 
-  // handles updating app state from args passed from child
+  // handles updating app state from args passed from child - critical!
   handler = (name, native, target, email, id) => {
     this.setState({
       name: name,
@@ -60,15 +50,15 @@ class App extends Component {
       target: target,
       email: email,
       id: id
-    })
-  }
+    });
+    console.log(this.state); // log updates to state (user)
+  };
 
   render() {
     return (
       <ThemeProvider theme={theme} className="App">
-        <Fade clear delay={2400}>
+        <Fade clear delay={800}>
           <ButtonAppBar />
-         
         </Fade>
 
         <Router>
@@ -78,11 +68,10 @@ class App extends Component {
               <Route exact path="/login" render={() => <LoginPage app={this.state} appStateHandler={this.handler}/>} />
               <Route exact path="/profile" render={() => <ProfilePage app={this.state} appStateHandler={this.handler} />} />
               <Route exact path="/messenger" render={() => <MessengerPage app={this.state} />} />
-              {/* sandbox testing below for material UI */}
-              <Route component={Sandbox} />
             </Switch>
           </div>
         </Router>
+
       </ThemeProvider>
     )
   }
