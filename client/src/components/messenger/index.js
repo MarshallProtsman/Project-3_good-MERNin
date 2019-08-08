@@ -194,7 +194,7 @@ class Chat extends Component {
                             <Fade clear>
                                 <div style={msgStyle} key={message.key} data-message={message.message} data-translation={message.translation}>
                                 <Button onClick={this.toggleMessage} id={message.key} style={msgBody}>
-                                    {this.state.isHidden ? (<span>{message.user.name} : {message.translation}</span>) : (<span> {message.user.name} : {message.message}</span>) }
+                                    {this.state.isHidden ? (<span>{message.user.name}: {message.translation}</span>) : (<span> {message.user.name}: {message.message}</span>) }
                                     </Button>
                                 </div>
                                 </Fade>
