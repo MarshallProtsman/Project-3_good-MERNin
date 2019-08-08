@@ -23,20 +23,15 @@ export default function ButtonAppBar(props) {
   return (
     <div className={classes.root}>
       <AppBar position="static">
-      
         <Toolbar>
           <Grid container>
             <Grid item md={4}>
               <Button><h1>Immersio</h1></Button>
-              
             </Grid>
           </Grid>
-          
           <Button color="inherit" >Login</Button>
         </Toolbar>
       </AppBar>
-
-      
     </div>
   );
 }

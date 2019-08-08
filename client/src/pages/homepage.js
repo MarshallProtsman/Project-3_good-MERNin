@@ -69,10 +69,8 @@ class Sandbox extends Component {
 
         return (
             <Box style={style.page}>
-
                 <p style={style.scroll}>S C R O L L</p>
                 <Fade clear delay={200}>
-
                     <Container style={style.sectionOne}>
                         <BlockRevealAnimation delay={1} color="#80CED7">
                             <Typography>
@@ -80,7 +78,6 @@ class Sandbox extends Component {
                             </Typography>
                         </BlockRevealAnimation>
                         <br />
-
                         <Grid container spacing={6}>
                             <Grid item md={2} xs={2}>
                             </Grid>
