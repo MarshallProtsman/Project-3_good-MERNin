@@ -100,8 +100,9 @@ class Chat extends Component {
                 fontSize: 1 + 'em',
                 marginBottom: 0.33 + 'em',
                 border: '1px solid lightgrey',
-                padding: 0.33 + 'em',
-                width: '66%'
+                padding: 0.66 + 'em',
+                width: '66%',
+                borderRadius: '15em',
             },
 
             Button: {
@@ -109,8 +110,10 @@ class Chat extends Component {
                 fontSize: 1 + 'em',
                 marginTop: 1 + 'em',
                 color: 'white',
-                background: 'orangered',
+                background: '#000000',
                 padding: 0.22 + 'em',
+                borderRadius: '15em',
+                marginLeft: '1.33em'
                 // border: 'none'
             },
 
@@ -155,7 +158,8 @@ class Chat extends Component {
                 maxWidth: '60%',
                 borderRadius: '15em',
                 textTransform: 'none',
-                fontSize: '1.22em'
+                fontSize: '1.22em',
+                padding: '0 0.66em 0 0.66em'
             },
             msgBodyFriend: {
                 background: '#DB504A',
