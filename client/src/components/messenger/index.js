@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import io from 'socket.io-client';
 import Box from '@material-ui/core/Box';
-import Grid from "@material-ui/core/Grid";
-import Container from "@material-ui/core/Container";
 
 class Chat extends Component {
     constructor(props) {

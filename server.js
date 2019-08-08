@@ -35,7 +35,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // serve static assets
-app.use('/static', express.static(path.join(__dirname, 'client/build')));
+app.use('/static', express.static(path.join(__dirname, 'client/build/static')));
 // app.use(express.static("public"));
 
 var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/LanguageApp";
@@ -93,8 +93,8 @@ app.delete("/messenger", function (req, res) {
 
 // Send every other request to the React app
 // Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/public/index.html"));
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
 console.log(process.env.GOOGLE_APPLICATION_CREDENTIALS);

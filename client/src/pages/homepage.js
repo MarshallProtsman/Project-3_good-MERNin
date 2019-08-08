@@ -22,7 +22,7 @@ class Sandbox extends Component {
                 backgroundImage: 'url(' + imgURL + ')',
                 backgroundSize: '800px',
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'bottom',
+                // backgroundPosition: 'bottom',
                 backgroundPosition: 'right',
                 height: '94vh',
                 width: '100%',
@@ -134,7 +134,7 @@ class Sandbox extends Component {
                 {/* fullwidth image */}
                 <div style={{ marginTop: '10em' }}>
                     <Fade clear>
-                        <img src={person1}></img>
+                        <img src={person1} alt="#"></img>
                     </Fade>
                 </div>
 
