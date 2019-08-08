@@ -8,6 +8,7 @@ import { Link } from 'react-router-dom';
 import Fade from 'react-reveal/Fade';
 import thisImage from '../images/person1.jpg'
 import mainImage from "../images/lady.jpg"
+import Navbar from '../components/navbar';
 class Sandbox extends Component {
 
     render() {
@@ -65,6 +66,8 @@ class Sandbox extends Component {
         }
 
         return (
+            <div>
+                <Navbar/>
             <Box style={style.page}>
                 <p style={style.scroll}>S C R O L L</p>
                 <Fade clear delay={200}>
@@ -171,6 +174,7 @@ class Sandbox extends Component {
                     </Grid>
                 </div>
             </Box>
+        </div>
         )
     }
 
