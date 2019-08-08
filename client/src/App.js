@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import ButtonAppBar from "./components/navbar";
 import homePage from "./pages/homepage";
 import LoginPage from "./pages/login";
 import MessengerPage from "./pages/messenger";
@@ -58,7 +57,6 @@ class App extends Component {
     return (
       <ThemeProvider theme={theme} className="App">
         <Fade clear delay={800}>
-          <ButtonAppBar />
         </Fade>
 
         <Router>

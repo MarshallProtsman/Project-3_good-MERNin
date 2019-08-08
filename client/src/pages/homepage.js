@@ -7,13 +7,12 @@ import BlockRevealAnimation from 'react-block-reveal-animation';
 import { Link } from 'react-router-dom';  
 import Fade from 'react-reveal/Fade';
 
-
 class Sandbox extends Component {
 
     render() {
 
-        const imgURL = './img/lady.jpg';
-        const person1 = './img/person1.jpg';
+        const imgURL = '%PUBLIC_URL%/lady.jpg';
+        const person1 = '%PUBLIC_URL%/person1.jpg';
         const style = {
             page: {
                 paddingTop: '6em'

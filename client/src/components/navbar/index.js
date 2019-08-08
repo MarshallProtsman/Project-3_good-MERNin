@@ -27,7 +27,7 @@ export default function ButtonAppBar(props) {
         <Toolbar>
           <Grid container>
             <Grid item md={4}>
-              <Button style={{textTransform: 'none'}}><h1>Immersio</h1></Button>
+              <Button component={Link} to="/" style={{textTransform: 'none'}}><h1>Immersio</h1></Button>
             </Grid>
           </Grid>
           <Button color="inherit" >Login</Button>
