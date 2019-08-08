@@ -159,7 +159,7 @@ class Sandbox extends Component {
                         <Grid item md={2} xs={1}></Grid>
                         <Grid item md={8} xs={10}>
                             <Fade clear >
-                                <p>Copyright 2019.  Chaney Durham, David Wilson, John Robertson, and Marshal Protsman</p>
+                                <p>Copyright 2019.  Chaney Durham, David Wilson, John Robertson, and Marshall Protsman</p>
                                 <Typography style={{ fontSize: '1.11em' }}>
                                    {/* <h3>The developers that make it happen.</h3>
                                   <a href='#'><h4>Chaney Durham</h4></a>

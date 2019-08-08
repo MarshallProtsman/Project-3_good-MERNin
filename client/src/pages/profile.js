@@ -94,7 +94,7 @@ class ProfilePage extends Component {
                 <NavButton to="/messenger" text="Start Chatting!" />
                 <br />
                 <button onClick={this.updateParent}>Update</button>
-                <button onClick={this.props.appStateHandler} style={styleButton}>Russian Agent Marshal</button>
+                <button onClick={this.props.appStateHandler} style={styleButton}>Russian Agent Marshall</button>
             </Box>
         );
     };
